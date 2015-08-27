@@ -12,11 +12,11 @@ class Yola(
     """Client for Yola's API.
 
     ```
-    service = Yola(
+    yola = Yola(
         url='https://wl.yola.net/',
         auth=('username', 'password'))
 
-    service.get_user('user_id')
+    yola.get_user('user_id')
     ```
 
     When appropriate, successful responses will return parsed json objects.

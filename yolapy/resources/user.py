@@ -6,7 +6,7 @@ class UserResourceMixin(object):
         """Create a user.
 
         ```
-        user = service.create_user(
+        user = yola.create_user(
             name='John',
             surname='Smith',
             email='johnsmith@example.com',
@@ -20,7 +20,7 @@ class UserResourceMixin(object):
     def update_user(self, user_id, **attributes):
         """Update a user.
 
-        `service.update_user('user_id', name='New name')`
+        `yola.update_user('user_id', name='New name')`
         """
         return self.patch(self._user_path(user_id), data=attributes).json()
 
@@ -28,7 +28,7 @@ class UserResourceMixin(object):
         """Get details for a particular user.
 
         ```
-        user = service.get_user('user_id')
+        user = yola.get_user('user_id')
         user['name'] # => 'John'
         ```
         """
@@ -37,7 +37,7 @@ class UserResourceMixin(object):
     def list_users(self, **filters):
         """Return paginated list of users.
 
-        `service.list_users()`
+        `yola.list_users()`
 
         Example response:
 
@@ -60,35 +60,35 @@ class UserResourceMixin(object):
 
         For example:
 
-        `service.list_users(page=2, page_size=50, partner_id='WL_YOLA')`
+        `yola.list_users(page=2, page_size=50, partner_id='WL_YOLA')`
         """
         return self.get(self._user_path(), params=filters).json()
 
     def delete_user(self, user_id):
         """Delete a user.
 
-        `service.delete_user('user_id')`
+        `yola.delete_user('user_id')`
         """
         self.delete(self._user_path(user_id))
 
     def suspend_user(self, user_id):
         """Suspend a user.
 
-        `service.suspend_user('user_id')`
+        `yola.suspend_user('user_id')`
         """
         self.post(self._user_path(user_id, 'suspend'))
 
     def resume_user(self, user_id):
         """Resume a user.
 
-        `service.resume_user('user_id')`
+        `yola.resume_user('user_id')`
         """
         self.post(self._user_path(user_id, 'resume'))
 
     def get_sso_create_site_url(self, user_id, domain):
         """Get SSO create site url for a particular user and domain.
 
-        `service.get_sso_create_site_url('user_id', 'example.com')`
+        `yola.get_sso_create_site_url('user_id', 'example.com')`
         """
         return self.get(
             self._user_path(user_id, 'sso_url_create_site'),
@@ -97,7 +97,7 @@ class UserResourceMixin(object):
     def get_sso_open_site_url(self, user_id):
         """Get SSO open site url for a particular user.
 
-        `service.get_sso_open_site_url('user_id')`
+        `yola.get_sso_open_site_url('user_id')`
         """
         self.get(self._user_path(user_id, 'sso_url_open_site'))
 

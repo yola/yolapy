@@ -6,7 +6,7 @@ class PartnerResourceMixin(object):
         """Create a partner.
 
         ```
-        partner = service.create_partner(
+        partner = yola.create_partner(
             id='COMPANY_ID',
             name='Company Name',
             parent_partner_id='PARENT_ID',
@@ -22,7 +22,7 @@ class PartnerResourceMixin(object):
         """Return details for a particular partner.
 
         ```
-        partner = service.get_partner('PARTNER_ID')
+        partner = yola.get_partner('PARTNER_ID')
         partner['name'] # => 'Company Name'
         ```
         """
@@ -31,14 +31,14 @@ class PartnerResourceMixin(object):
     def delete_partner(self, partner_id):
         """Delete a partner.
 
-        `service.delete_partner('PARTNER_ID')`
+        `yola.delete_partner('PARTNER_ID')`
         """
         self.delete(self._partner_path(partner_id))
 
     def update_partner(self, partner_id, **attributes):
         """Update a partner.
 
-        `service.update_partner('PARTNER_ID', name='New name')`
+        `yola.update_partner('PARTNER_ID', name='New name')`
         """
         return self.patch(
             self._partner_path(partner_id), data=attributes).json()
@@ -46,7 +46,7 @@ class PartnerResourceMixin(object):
     def list_partners(self, **options):
         """Return paginated list of partners.
 
-        `service.list_partners()`
+        `yola.list_partners()`
 
         Example response:
 
@@ -61,7 +61,7 @@ class PartnerResourceMixin(object):
 
         You can pass `page_size` and `page` as keyword arguments:
 
-        `service.list_partners(page_size=50, page=2)`
+        `yola.list_partners(page_size=50, page=2)`
         """
         return self.get(self._partner_path(), params=options).json()
 
