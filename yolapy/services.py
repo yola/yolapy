@@ -1,13 +1,12 @@
 from demands import HTTPServiceClient
 
-from yolapy.resources.partner import PartnerResourceMixin
-from yolapy.resources.site import SiteResourceMixin
-from yolapy.resources.user import UserResourceMixin
+from yolapy.resources import partner, site, subscription, user
 
 
 class Yola(
-        HTTPServiceClient, PartnerResourceMixin, SiteResourceMixin,
-        UserResourceMixin):
+        HTTPServiceClient, partner.PartnerResourceMixin,
+        site.SiteResourceMixin, subscription.SubscriptionResourceMixin,
+        user.UserResourceMixin):
 
     """Client for Yola's API.
 
