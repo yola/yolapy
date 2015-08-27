@@ -18,4 +18,5 @@ yola.create_user(
     'preferences': {'name': 'value'})
 ```
 
-See [TODO] for available methods with documentation.
+See <http://yolapy.readthedocs.org/en/latest/> for available methods with
+documentation.
