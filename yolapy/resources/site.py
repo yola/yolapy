@@ -59,10 +59,10 @@ class SiteResourceMixin(object):
         data = {'id': new_user_id}
         self.post(self._site_path(site_id, 'change_owner'), data=data)
 
-    def change_partner_domain(self, site_id, new_domain):
-        """Change site's partner domain.
+    def change_site_domain(self, site_id, new_domain):
+        """Change site's domain.
 
-        `yola.change_site_partner_domain('site_id', 'newdomain.com')`
+        `yola.change_site_domain('site_id', 'newdomain.com')`
         """
         data = {'partner_domain': new_domain}
         self.put(self._site_path(site_id, 'partner_domain'), data=data)
