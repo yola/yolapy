@@ -4,7 +4,7 @@ from yolapy.resources import campaign, partner, site, subscription, user
 
 
 class Yola(
-        HTTPServiceClient, campaign.CampainResourceMixin,
+        HTTPServiceClient, campaign.CampaignResourceMixin,
         partner.PartnerResourceMixin, site.SiteResourceMixin,
         subscription.SubscriptionResourceMixin, user.UserResourceMixin):
 

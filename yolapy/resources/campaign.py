@@ -1,6 +1,6 @@
-class CampainResourceMixin(object):
+class CampaignResourceMixin(object):
 
-    """Methods for managing Campain resources."""
+    """Methods for managing Campaign resources."""
 
     def list_campaigns(self, site_id, **options):
         """Return list of campaigns for a site."""
@@ -11,7 +11,7 @@ class CampainResourceMixin(object):
 
         ```
         campaign = yola.get_campaign('site_id', 'campaign_id')
-        campaign['name'] # => 'My Campain'
+        campaign['name'] # => 'My Campaign'
         ```
         """
         return self.get(self._campaign_path(site_id, campaign_id)).json()
