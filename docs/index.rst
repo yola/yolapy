@@ -1,25 +1,12 @@
-.. Yolapy documentation master file, created by
-   sphinx-quickstart on Thu Aug 27 12:47:53 2015.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to Yolapy's documentation!
-==================================
-
-Contents:
+Python client for the Yola API
+==============================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-.. autoclass:: yolapy.services.Yola
-   :members:
-   :inherited-members: 
+   service_class
 
+``yolapy`` provides a ``Yola`` `service class`_ for interacting directly with
+the Yola API. Future versions will provide higher-level abstractions.
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+.. _`service class`: service_class.html
