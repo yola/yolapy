@@ -8,10 +8,9 @@ class CampaignResourceMixin(object):
     def get_campaign(self, site_id, campaign_id):
         """Return details for a particular campaign.
 
-        ```
-        campaign = yola.get_campaign('site_id', 'campaign_id')
-        campaign['name'] # => 'My Campaign'
-        ```
+        >>> campaign = yola.get_campaign('site_id', 'campaign_id')
+        >>> campaign['name']
+        'My Campaign'
         """
         return self.get(self._campaign_path(site_id, campaign_id)).json()
 
@@ -22,12 +21,10 @@ class CampaignResourceMixin(object):
     def subscribe_to_campaign(self, site_id, campaign_id):
         """Subscribe to a campaign.
 
-        ```
-        params = {...}
-        yola.subscribe_to_campaign('site_id', 'campaign_id', params)
-        ```
+        >>> params = {...}
+        >>> yola.subscribe_to_campaign('site_id', 'campaign_id', params)
 
-        See <https://wl.qa.yola.net/sites/SITE_ID/campaigns/> for expected
+        See https://wl.qa.yola.net/sites/SITE_ID/campaigns/ for expected
         params.
         """
         self.post(self._campaign_path(site_id, campaign_id, 'subscribe'))
