@@ -1,5 +1,4 @@
 class SiteResourceMixin(object):
-
     """Methods for managing Site resources."""
 
     def list_sites(self, **options):

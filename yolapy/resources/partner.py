@@ -1,5 +1,4 @@
 class PartnerResourceMixin(object):
-
     """Methods for managing Partner resources."""
 
     def create_partner(self, **attributes):

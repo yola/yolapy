@@ -1,5 +1,4 @@
 class UserResourceMixin(object):
-
     """Methods for managing User resources."""
 
     def create_user(self, **attributes):

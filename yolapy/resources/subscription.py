@@ -1,5 +1,4 @@
 class SubscriptionResourceMixin(object):
-
     """Methods for managing Subscription resources."""
 
     def list_subscriptions(self, **options):

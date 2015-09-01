@@ -7,7 +7,6 @@ class Yola(
         HTTPServiceClient, campaign.CampaignResourceMixin,
         partner.PartnerResourceMixin, site.SiteResourceMixin,
         subscription.SubscriptionResourceMixin, user.UserResourceMixin):
-
     """Client for Yola's API.
 
     ```

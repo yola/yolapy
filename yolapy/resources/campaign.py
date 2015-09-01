@@ -1,5 +1,4 @@
 class CampaignResourceMixin(object):
-
     """Methods for managing Campaign resources."""
 
     def list_campaigns(self, site_id, **options):
