@@ -14,17 +14,9 @@ class Clear(Helper):
     command = 'clear'
 
 
-class Docstrings(Pep257):
-    """Lint docstrings."""
-
-    def get_args(self, *args, **kwargs):
-        """Return list of arguments to pass to pep257."""
-        return super(Docstrings, self).get_args() + ['--ignore=D100,D203']
-
-
 clear = Clear(all_files=True)
 lint = Flake8(all_files=True)
-docstrings = Docstrings(all_files=True)
+docstrings = Pep257(all_files=True)
 
 PATTERNS = (
     (r'.*\.py$', [clear, lint, docstrings], {'fail_fast': True}),
