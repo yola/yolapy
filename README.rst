@@ -18,7 +18,7 @@ Usage
         name='Jane',
         surname='Doe',
         partner_id='WL_YOLA',
-        preferences={'name='value'})
+        preferences={'name': 'value'})
 
 See <http://yolapy.readthedocs.org/> for available methods with
 documentation.
