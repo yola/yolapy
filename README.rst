@@ -37,7 +37,11 @@ To run the tests::
 
     $ nosetests
 
-To lint your code automatically when you make changes::
+Integration tests are not run by default. To run them::
+
+    $ nosetests tests/test_integration
+
+To test and lint your code automatically when you make changes::
 
     $ cp tube.py.sample tube.py
     $ stir

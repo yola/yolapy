@@ -14,11 +14,37 @@ class ScreenClearer(Helper):
     def success(self, *args):
         pass
 
+
+class FocusedTests(Helper):
+    """Run tests for changed files only (using nose-knows)."""
+
+    command = 'nosetests'
+
+    def get_args(self, *args, **kwargs):
+        """Return args to run nose-knows in output mode."""
+        return ['--with-knows', self.changed]
+
+
+class FullTests(Nosetests):
+    """Run all tests (includes integration tests)."""
+
+    def get_args(self, *args, **kwargs):
+        """Run all integration tests and generate a knows-nose mapping file."""
+        return ['--with-knows', '--knows-out',
+                'tests', 'tests/test_integration']
+
+
 clear = ScreenClearer(all_files=True)
 lint = Flake8(all_files=True)
-lint_docs = Pep257(all_files=True)
-test = Nosetests()
+docstrings = Pep257(all_files=True)
+focused_tests = FocusedTests()
+full_tests = FullTests()
 
 PATTERNS = (
-    (r'.*\.py$', [clear, lint, test, lint_docs], {'fail_fast': True}),
+    (r'.*\.py$', [clear, lint, docstrings], {'fail_fast': True}),
+    (r'.*\.py$', [focused_tests], {'fail_fast': True}),
+    (r'.*\.py$', [full_tests], {'fail_fast': True}),
 )
+
+# run full tests on load to ensure a .knows file exists:
+full_tests(None, None)
