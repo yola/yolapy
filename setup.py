@@ -21,7 +21,8 @@ setup(
     packages=find_packages(),
     classifiers=[
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 3',
         'Topic :: Internet :: WWW/HTTP',
     ],
 )
