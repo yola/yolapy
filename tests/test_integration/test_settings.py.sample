@@ -1,0 +1,2 @@
+url = 'https://wl-test.example.com/'
+auth = ('username', 'password')

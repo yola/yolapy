@@ -37,7 +37,13 @@ To run the tests::
 
     $ nosetests
 
-Integration tests are not run by default. To run them::
+Integration tests are not run by default. To run them, you must set up an
+integration environment and edit the test settings::
+
+    $ cp tests/test_integration/test_settings.py.sample \
+    $    tests/test_integration/test_settings.py
+
+Then run them explicitly::
 
     $ nosetests tests/test_integration
 
