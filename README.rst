@@ -26,9 +26,7 @@ documentation.
 Development
 -----------
 
-To lint your code automatically when you make changes:
-
-::
+To lint your code automatically when you make changes::
 
     $ cp tube.py.sample tube.py
     $ stir
