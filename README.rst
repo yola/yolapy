@@ -20,7 +20,7 @@ Usage
         partner_id='WL_YOLA',
         preferences={'name': 'value'})
 
-See <http://yolapy.readthedocs.org/> for available methods with
+See http://yolapy.readthedocs.org/ for available methods with
 documentation.
 
 Development
