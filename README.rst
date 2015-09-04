@@ -30,3 +30,17 @@ To lint your code automatically when you make changes::
 
     $ cp tube.py.sample tube.py
     $ stir
+
+Documentation
+-------------
+
+Changes to the public interface should be documented. See the `docs` directory.
+
+Pushes to the `master` branch build at http://yolapy.readthedocs.org/en/latest/
+automatically.
+
+You can test your doc changes locally with::
+
+    $ cd docs
+    $ make html
+    $ open _build/html/index.html
