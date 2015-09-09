@@ -16,7 +16,6 @@ import sys
 import os
 import shlex
 
-from recommonmark.parser import CommonMarkParser
 import sphinx_rtd_theme
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -42,13 +41,9 @@ extensions = [
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
-source_parsers = {
-    '.md': CommonMarkParser,
-}
-
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
-source_suffix = ['.rst', '.md']
+source_suffix = ['.rst']
 
 # The encoding of source files.
 #source_encoding = 'utf-8-sig'
