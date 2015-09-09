@@ -76,7 +76,7 @@ class SiteResourceMixin(object):
 
         >>> yola.get_site('site_id')['deleted_at']
         '2015-08-27T10:00:07'
-        >>> yola.delete_site('site_id')
+        >>> yola.undelete_site('site_id')
         >>> yola.get_site('site_id')['deleted_at']
         None
         """
