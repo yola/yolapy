@@ -33,7 +33,7 @@ class SiteResourceMixin(object):
     def disable_site(self, site_id):
         """Disable a site.
 
-        A disabled site can't be published.
+        A disabled site can be edited but can't be published.
 
         >>> yola.disable_site('site_id')
         """
