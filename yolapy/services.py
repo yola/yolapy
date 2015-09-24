@@ -1,5 +1,5 @@
 from demands import HTTPServiceClient
-from yolapy.configuration import get_config
+from yolapy.configuration import config as defaults
 from yolapy.resources import campaign, partner, site, subscription, user
 
 
@@ -11,10 +11,9 @@ class Yola(
 
     If using yolapy.configuration:
     ```
-    configure(yola={
-        'url': 'https://wl.yola.net/',
-        'auth': ('username', 'password')),
-    })
+    configure(
+        url='https://wl.yola.net/',
+        auth=('username', 'password'))
     yola = Yola()
     yola.get_user('user_id')
     ```
@@ -37,7 +36,7 @@ class Yola(
     def __init__(self, **kwargs):
         """Initialize with optional headers.
 
-        Auth and url are expected to be present in the 'yola' configuration.
+        Auth and url defaults are pulled from yolapy.configuration.
 
         Passed arguments will override configuration.
 
@@ -46,7 +45,7 @@ class Yola(
         ```
         """
         config = {'send_as_json': True}
-        config.update(get_config('yola', {}))
+        config.update(defaults)
         config.update(kwargs)
         assert(config['url'])
         assert(config['auth'])

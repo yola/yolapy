@@ -13,18 +13,18 @@ Data is stored here in the module, benefits include:
 See README for example of use.
 
 """
-_config = {}
+config = {}
 _default = object()
 
 
 def configure(**kwargs):
     """Save all keyword arguments as (key=value) configuration."""
-    _config.update(kwargs)
+    config.update(kwargs)
 
 
 def get_config(key, default=_default):
     """Lookup the value of a configuration key using an optional default."""
-    config = _config.get(key, default)
-    if config == _default:
+    value = config.get(key, default)
+    if value == _default:
         raise KeyError('%s is not configured' % key)
-    return config
+    return value

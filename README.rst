@@ -10,10 +10,10 @@ Usage
 
     from yolapy.configuration import configure
 
-    configure(yola={
-        'auth': ('username', 'password'),
-        'url': 'https://wl.qa.yola.net/',
-    })
+    configure(
+        auth=('username', 'password'),
+        url='https://wl.qa.yola.net/',
+    )
 
     # application code
 
