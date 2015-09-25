@@ -14,7 +14,7 @@ See README for example of use.
 
 """
 config = {}
-_default = object()
+_missing = object()
 
 
 def configure(**kwargs):
@@ -22,9 +22,9 @@ def configure(**kwargs):
     config.update(kwargs)
 
 
-def get_config(key, default=_default):
+def get_config(key, default=_missing):
     """Lookup the value of a configuration key using an optional default."""
     value = config.get(key, default)
-    if value == _default:
+    if value == _missing:
         raise KeyError('%s is not configured' % key)
     return value
