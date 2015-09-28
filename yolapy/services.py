@@ -43,4 +43,5 @@ class Yola(
         config.update(kwargs)
         assert(config['url'])
         assert(config['auth'])
+        self.username = config['auth'][0]
         super(Yola, self).__init__(**config)
