@@ -1,3 +1,5 @@
+import uuid
+
 from yolapy.services import Yola
 
 
@@ -47,20 +49,38 @@ class User(object):
         self.partner_id = partner_id or self.client.username
         self.active = active
         self.deleted = deleted
-        self.email = email
         self.id = id
         self.name = name
         self.preferences = preferences or {}
         self.signup_date = signup_date
         self.surname = surname
 
+        self._legacy_email = None
+        if email:
+            self.email = email
+
+    @property
+    def email(self):
+        """Store email in preferences, sidestepping a legacy constraint."""
+        return self.preferences.get('wl_email')
+
+    @email.setter
+    def email(self, email):
+        self.preferences['wl_email'] = email
+
+    def _get_or_create_legacy_email(self):
+        if not self._legacy_email:
+            self._legacy_email = '%s@yola.net' % uuid.uuid4().hex
+        return self._legacy_email
+
     def _save_create(self):
         user = self.client.create_user(
-            email=self.email,
+            email=self._get_or_create_legacy_email(),
             name=self.name,
             partner_id=self.partner_id,
             preferences=self.preferences,
             surname=self.surname)
+        user['_legacy_email'] = user.pop('email')
         self.update(**user)
 
     def _save_update(self):
