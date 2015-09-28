@@ -33,6 +33,10 @@ documentation.
 Development
 -----------
 
+To run the tests::
+
+    $ nosetests
+
 To lint your code automatically when you make changes::
 
     $ cp tube.py.sample tube.py

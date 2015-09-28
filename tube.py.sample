@@ -5,19 +5,20 @@ Automatically run tests when files change by running: stir
 See: https://github.com/thomasw/testtube
 """
 
-from testtube.helpers import Helper, Flake8, Pep257
+from testtube.helpers import Flake8, Helper, Nosetests, Pep257
 
 
-class Clear(Helper):
-    """Clear the screen."""
-
+class ScreenClearer(Helper):
     command = 'clear'
 
+    def success(self, *args):
+        pass
 
-clear = Clear(all_files=True)
+clear = ScreenClearer(all_files=True)
 lint = Flake8(all_files=True)
-docstrings = Pep257(all_files=True)
+lint_docs = Pep257(all_files=True)
+test = Nosetests()
 
 PATTERNS = (
-    (r'.*\.py$', [clear, lint, docstrings], {'fail_fast': True}),
+    (r'.*\.py$', [clear, lint, test, lint_docs], {'fail_fast': True}),
 )
