@@ -9,28 +9,24 @@ class Yola(
         subscription.SubscriptionResourceMixin, user.UserResourceMixin):
     """Client for Yola's API.
 
-    If using yolapy.configuration:
-    ```
-    configure(
-        url='https://wl.yola.net/',
-        auth=('username', 'password'))
-    yola = Yola()
-    yola.get_user('user_id')
-    ```
+    If using yolapy.configuration::
 
-    Or configured manually:
-    ```
-    yola = Yola(
-        url='https://wl.yola.net/',
-        auth=('username', 'password'))
-    yola.get_user('user_id')
-    ```
+        configure(
+            url='https://wl.yola.net/',
+            auth=('username', 'password'))
+        yola = Yola()
+        yola.get_user('user_id')
+
+    Or configured manually::
+
+        yola = Yola(
+            url='https://wl.yola.net/',
+            auth=('username', 'password'))
+        yola.get_user('user_id')
 
     When appropriate, successful responses will return parsed json objects.
 
-    Failures will raise instances of `demands.HTTPServiceError`.
-
-    See [TODO] for available methods with documentation.
+    Failures will raise instances of ``demands.HTTPServiceError``.
     """
 
     def __init__(self, **kwargs):
@@ -38,11 +34,9 @@ class Yola(
 
         Auth and url defaults are pulled from yolapy.configuration.
 
-        Passed arguments will override configuration.
+        Passed arguments will override configuration::
 
-        ```
-        Yola(headers={'Header-Name': 'value'})
-        ```
+            Yola(headers={'Header-Name': 'value'})
         """
         config = {'send_as_json': True}
         config.update(defaults)

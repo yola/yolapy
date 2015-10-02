@@ -4,15 +4,14 @@ class UserResourceMixin(object):
     def create_user(self, **attributes):
         """Create a user.
 
-        ```
-        user = yola.create_user(
+        >>> user = yola.create_user(
             name='John',
             surname='Smith',
             email='johnsmith@example.com',
             partner_id='WL_PARTNER_ID',
             preferences={'preference_name': 'preference_value'})
-        user['name'] # => 'John'
-        ```
+        >>> user['name']
+        'John'
         """
         response = self.post(self._user_path(), data=attributes).json()
         response['signup_date'] = response.pop('signupDate')
@@ -21,28 +20,23 @@ class UserResourceMixin(object):
     def update_user(self, user_id, **attributes):
         """Update a user.
 
-        `yola.update_user('user_id', name='New name')`
+        >>> yola.update_user('user_id', name='New name')
         """
         return self.patch(self._user_path(user_id), data=attributes).json()
 
     def get_user(self, user_id):
         """Get details for a particular user.
 
-        ```
-        user = yola.get_user('user_id')
-        user['name'] # => 'John'
-        ```
+        >>> user = yola.get_user('user_id')
+        >>> user['name']
+        'John'
         """
         return self.get(self._user_path(user_id)).json()
 
     def list_users(self, **filters):
         """Return paginated list of users.
 
-        `yola.list_users()`
-
-        Example response:
-
-        ```
+        >>> yola.list_users()
         {
             'count': 999,
             'previous': None,
@@ -51,9 +45,8 @@ class UserResourceMixin(object):
                 {'name': 'John', 'surname': 'Smith', ...}
             ]
         }
-        ```
 
-        If there are no users, `results` will be an empty list. No exception
+        If there are no users, ``results`` will be an empty list. No exception
         will be raised.
 
         You may pass pagination options and attribute filters as keyword
@@ -61,35 +54,35 @@ class UserResourceMixin(object):
 
         For example:
 
-        `yola.list_users(page=2, page_size=50, partner_id='WL_YOLA')`
+        >>> yola.list_users(page=2, page_size=50, partner_id='WL_YOLA')
         """
         return self.get(self._user_path(), params=filters).json()
 
     def delete_user(self, user_id):
         """Delete a user.
 
-        `yola.delete_user('user_id')`
+        >>> yola.delete_user('user_id')
         """
         self.delete(self._user_path(user_id))
 
     def suspend_user(self, user_id):
         """Suspend a user.
 
-        `yola.suspend_user('user_id')`
+        >>> yola.suspend_user('user_id')
         """
         self.post(self._user_path(user_id, 'suspend'))
 
     def resume_user(self, user_id):
         """Resume a user.
 
-        `yola.resume_user('user_id')`
+        >>> yola.resume_user('user_id')
         """
         self.post(self._user_path(user_id, 'resume'))
 
     def get_sso_create_site_url(self, user_id, domain):
         """Get SSO create site url for a particular user and domain.
 
-        `yola.get_sso_create_site_url('user_id', 'example.com')`
+        >>> yola.get_sso_create_site_url('user_id', 'example.com')
         """
         return self.get(
             self._user_path(user_id, 'sso_url_create_site'),
@@ -98,7 +91,7 @@ class UserResourceMixin(object):
     def get_sso_open_site_url(self, user_id):
         """Get SSO open site url for a particular user.
 
-        `yola.get_sso_open_site_url('user_id')`
+        >>> yola.get_sso_open_site_url('user_id')
         """
         self.get(self._user_path(user_id, 'sso_url_open_site'))
 
