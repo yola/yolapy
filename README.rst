@@ -6,19 +6,26 @@ Usage
 
 .. code:: python
 
-    from yolapy.services import Yola
+    # settings file
 
+    from yolapy.configuration import configure
 
-    yola = Yola(
+    configure(
+        auth=('username', 'password'),
         url='https://wl.qa.yola.net/',
-        auth=('username', 'password'))
+    )
 
-    yola.create_user(
+    # application code
+
+    from yolapy.models import User as YolaUser
+
+    yola_user = YolaUser(
         email='test@example.com',
         name='Jane',
         surname='Doe',
         partner_id='WL_YOLA',
         preferences={'name': 'value'})
+    yola_user.save()
 
 See http://yolapy.readthedocs.org/ for available methods with
 documentation.

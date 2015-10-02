@@ -25,4 +25,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Topic :: Internet :: WWW/HTTP',
     ],
+    install_requires=[
+        'demands >= 1.0.6, < 2.0.0',
+    ],
 )

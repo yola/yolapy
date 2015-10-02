@@ -13,7 +13,9 @@ class UserResourceMixin(object):
         >>> user['name']
         'John'
         """
-        return self.post(self._user_path(), data=attributes).json()
+        response = self.post(self._user_path(), data=attributes).json()
+        response['signup_date'] = response.pop('signupDate')
+        return response
 
     def update_user(self, user_id, **attributes):
         """Update a user.
