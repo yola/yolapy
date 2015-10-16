@@ -63,16 +63,22 @@ class SubscriptionResourceMixin(object):
         """
         self.post(self._subscription_path(subscription_id, 'remove_trial'))
 
-    def create_subscription(self, subscription_type, properties):
+    def create_subscription(self, subscription_type, user_id, properties):
         """Create a new subscription.
 
+        >>> subscription_type = 'wl_basic'
+        >>> user_id = 'abcdef0123456789abcdef0123456789'
         >>> properties = {...}
-        >>> yola.create_subscription('subscription_type', properties)
+        >>> yola.create_subscription(subscription_type, user_id, properties)
 
         See https://wl.qa.yola.net/subscriptions/ for available types and
         properties.
         """
-        data = {'type': subscription_type, 'properties': properties}
+        data = {
+            'properties': properties,
+            'type': subscription_type,
+            'user_id': user_id,
+        }
         self.post(self._subscription_path(), data=data)
 
     def _subscription_path(self, *parts):
