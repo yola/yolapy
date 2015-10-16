@@ -15,3 +15,32 @@ def create_user(service, **custom_attrs):
     }
     attrs.update(custom_attrs)
     return service.create_user(**attrs)
+
+
+def create_site(service, user_id=None):
+    """Create test site for given user_id.
+
+    If no user id is provided, a test user will be created.
+    """
+    if not user_id:
+        user_id = create_user(service)['id']
+
+    serialized_site = {
+        'id': uuid4().hex,
+        'cryptoKey': uuid4().hex,
+        'user_id': user_id,
+        'owner_id': user_id,
+        'name': 'My Test Site',
+        'version': 62,
+        'locale': 'en',
+        'properties': {},
+        'facebook_page_id': None,
+        'site_type': '1',
+        'auth_user': None,
+        'auth_pass': None,
+        'site_template': 'default',
+        'base_template': 'SuperFlat_v2',
+        'navigation': [],
+    }
+
+    return service._create_site(**serialized_site)

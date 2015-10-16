@@ -87,3 +87,6 @@ class SiteResourceMixin(object):
     def _site_path(self, *parts):
         path = '/'.join(['sites'] + list(parts))
         return '/%s/' % path
+
+    def _create_site(self, **attributes):
+        return self.post(self._site_path(), data=attributes).json()
