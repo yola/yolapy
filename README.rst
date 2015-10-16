@@ -46,7 +46,11 @@ integration environment and edit the test settings::
 Yola devs can get test auth credentials using the instructions on
 [this wiki page][service-dev-wiki].
 
-Then run them explicitly::
+**Note:** Try not to run the tests agains the Yola QA environment. It gets
+used for manual testing and we don't want to clutter it up with users created
+in automated test runs.
+
+Then you can run the integration tests explicitly::
 
     $ nosetests tests/test_integration
 
