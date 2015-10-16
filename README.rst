@@ -43,6 +43,9 @@ integration environment and edit the test settings::
     $ cp tests/test_integration/test_settings.py.sample \
     $    tests/test_integration/test_settings.py
 
+Yola devs can get test auth credentials using the instructions on
+[this wiki page][service-dev-wiki].
+
 Then run them explicitly::
 
     $ nosetests tests/test_integration
@@ -65,3 +68,6 @@ You can test your doc changes locally with::
     $ cd docs
     $ make html
     $ open _build/html/index.html
+
+
+[service-dev-wiki]: https://github.com/yola/wiki/wiki/Service-and-Client-guidelines#development
