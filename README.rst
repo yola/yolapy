@@ -59,6 +59,10 @@ To test and lint your code automatically when you make changes::
     $ cp tube.py.sample tube.py
     $ stir
 
+To open a REPL with a `Yola` client initialized with your `test_settings`::
+
+    $ python -i shell.py
+
 Documentation
 -------------
 
