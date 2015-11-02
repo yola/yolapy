@@ -1,4 +1,20 @@
+from time import time
 from uuid import uuid4
+
+
+def create_partner(service, **custom_attrs):
+        # can't use a uuid because of 30 char limit:
+        unique_id = str(time()).replace('.', '')
+
+        attrs = {
+            'id': 'WL_TEST-%s' % unique_id,
+            'name': 'TEST',
+            'parent_partner_id': 'WL_YOLA',
+            'properties': {'website': 'example.com'},
+        }
+        attrs.update(custom_attrs)
+
+        return service.create_partner(**attrs)
 
 
 def create_user(service, **custom_attrs):

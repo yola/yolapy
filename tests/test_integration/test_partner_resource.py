@@ -1,5 +1,4 @@
-from time import time
-
+from tests.test_integration.helpers import create_partner
 from tests.test_integration.test_case import YolaServiceTestCase
 
 
@@ -9,24 +8,9 @@ class TestYolaPartners(YolaServiceTestCase):
     @classmethod
     def setUpClass(cls):
         super(TestYolaPartners, cls).setUpClass()
-        cls.partner = cls._create_partner()
+        cls.partner = create_partner(cls.service)
         cls.partner_id = cls.partner['id']
         # There's no way to really delete the test partners we're creating :(
-
-    @classmethod
-    def _create_partner(cls, **overrides):
-        # can't use a uuid because of 30 char limit:
-        unique_id = str(time()).replace('.', '')
-
-        attrs = {
-            'id': 'WL_TEST-%s' % unique_id,
-            'name': 'TEST',
-            'parent_partner_id': 'WL_YOLA',
-            'properties': {'website': 'example.com'},
-        }
-        attrs.update(overrides)
-
-        return cls.service.create_partner(**attrs)
 
     def test_can_create_partner(self):
         self.assertEqual(self.partner['properties']['website'], 'example.com')
@@ -36,13 +20,13 @@ class TestYolaPartners(YolaServiceTestCase):
         self.assertEqual(partner['name'], 'TEST')
 
     def test_can_delete_partner(self):
-        partner = self._create_partner()
+        partner = create_partner(self.service)
         self.service.delete_partner(partner['id'])
         partner = self.service.get_partner(partner['id'])
         self.assertFalse(partner['is_active'])
 
     def test_can_update_partner(self):
-        partner = self._create_partner(name='Original Name')
+        partner = create_partner(self.service, name='Original Name')
         partner = self.service.update_partner(partner['id'], name='New Name')
         self.assertEqual(partner['name'], 'New Name')
 
