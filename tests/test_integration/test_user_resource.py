@@ -1,6 +1,6 @@
 import demands
 
-from tests.test_integration.helpers import create_user
+from tests.test_integration.helpers import create_site, create_user
 from tests.test_integration.test_case import YolaServiceTestCase
 
 
@@ -61,7 +61,6 @@ class TestYolaUser(YolaServiceTestCase):
         self.assertTrue(url.startswith('http'))
 
     def test_can_get_sso_open_site_url(self):
-        # TODO: create site for user
-        # url = self.service.get_sso_open_site_url(self.user_id)
-        # self.assertTrue(url.startswith('http'))
-        pass
+        create_site(self.service, self.user_id)
+        url = self.service.get_sso_open_site_url(self.user_id)
+        self.assertTrue(url.startswith('http'))
