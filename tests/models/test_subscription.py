@@ -3,7 +3,6 @@ from unittest import TestCase
 from mock import patch
 
 from yolapy.models import Subscription
-from tests.responses import subscriptions_for_userid
 
 
 class SubscriptionTestCase(TestCase):
@@ -18,7 +17,11 @@ class SubscriptionTestCase(TestCase):
         self.client = self.client_patcher.start().return_value
 
     def _stub_list_subscriptions(self):
-        self.client.list_subscriptions.return_value = subscriptions_for_userid
+        self.client.list_subscriptions.return_value = {
+            'results': [{
+                'id': 'fake-sub-id-abcdef1234567890abcd',
+            }],
+        }
 
 
 class SubscriptionList(SubscriptionTestCase):
