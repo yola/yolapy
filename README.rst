@@ -1,6 +1,9 @@
 Yola API Python Client
 ======================
 
+.. image:: https://travis-ci.org/yola/yolapy.svg?branch=master
+    :target: https://travis-ci.org/yola/yolapy
+
 Usage
 -----
 
