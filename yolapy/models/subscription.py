@@ -35,7 +35,8 @@ class Subscription(object):
         self.billing_date = billing_date
         self.deprovision_date = deprovision_date
         self.id = id
-        self.properties = properties or {'partner_id': self.client.username}
+        self.properties = properties or {}
+        self.properties.setdefault('partner_id', self.client.username)
         self.sku = sku
         self.type = type
         self.user_id = user_id
