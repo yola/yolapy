@@ -33,13 +33,6 @@ class TestYolaSite(YolaServiceTestCase):
         site = self.service.get_site(self.site['id'])
         self.assertEqual(site['user_id'], new_user['id'])
 
-    def test_can_change_site_domain(self):
-        pass
-        # See https://github.com/yola/yolapy/issues/19
-        # self.service.change_site_domain(self.site['id'], 'new.example.com')
-        # site = self.service.get_site(self.site['id'])
-        # self.assertEqual(site['partner_domain'], 'new.example.com')
-
     def test_can_delete_and_undelete_site(self):
         self.service.delete_site(self.site['id'])
         site = self.service.get_site(self.site['id'])
