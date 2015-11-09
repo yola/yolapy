@@ -39,14 +39,3 @@ class TestYolaSubscription(YolaServiceTestCase):
         self.service.reactivate_subscription(cancelled_sub['id'], 'testing')
         reactivated_sub = self.service.get_subscription(cancelled_sub['id'])
         self.assertEqual(reactivated_sub['status'], 'active')
-
-    # Not working: https://github.com/yola/yolapy/issues/24
-    # def test_can_activate_a_trial_subscription(self):
-    #     user = create_user(self.service, partner_id=self.partner['id'])
-    #     sub = self.service.create_subscription('wl_basic', user['id'], {
-    #         'trial': True})
-    #     self.assertTrue(sub['properties']['trial'])
-
-    #     self.service.activate_trial_subscription(sub['id'])
-    #     activated_sub = self.service.get_subscription(sub['id'])
-    #     self.assertFalse(activated_sub['properties']['trial'])
