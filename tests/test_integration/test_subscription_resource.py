@@ -29,13 +29,6 @@ class TestYolaSubscription(YolaServiceTestCase):
         sub = self.service.get_subscription(self.subscription['id'])
         self.assertEqual(sub['id'], self.subscription['id'])
 
-    # Not working: https://github.com/yola/yolapy/issues/21
-    # def test_can_change_subscription_type(self):
-    #     self.service.change_subscription_type(
-    #         self.subscription['id'], 'wl_lite')
-    #     sub = self.service.get_subscription(self.subscription['id'])
-    #     self.assertEqual(sub['type'], 'wl_lite')
-
     def test_can_cancel_and_reactivate_subscription(self):
         self.assertEqual(self.subscription['status'], 'active')
 
