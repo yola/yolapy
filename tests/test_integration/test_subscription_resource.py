@@ -18,18 +18,18 @@ class TestYolaSubscription(YolaServiceTestCase):
         cls.subscription = cls.service.create_subscription(
             'wl_basic', user['id'], {'foo': 'bar'})
 
-    def test_can_create_subscriptions(self):
+    def test_create_subscriptions(self):
         self.assertEqual(self.subscription['status'], 'active')
 
-    def test_can_list_subscriptions(self):
+    def test_list_subscriptions(self):
         subs = self.service.list_subscriptions()['results']
         self.assertTrue(len(subs) > 0)
 
-    def test_can_get_subscription(self):
+    def test_get_subscription(self):
         sub = self.service.get_subscription(self.subscription['id'])
         self.assertEqual(sub['id'], self.subscription['id'])
 
-    def test_can_cancel_and_reactivate_subscription(self):
+    def test_cancel_and_reactivate_subscription(self):
         self.assertEqual(self.subscription['status'], 'active')
 
         self.service.cancel_subscription(self.subscription['id'], 'testing')
