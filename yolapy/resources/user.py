@@ -93,7 +93,8 @@ class UserResourceMixin(object):
 
         >>> yola.get_sso_open_site_url('user_id')
         """
-        self.get(self._user_path(user_id, 'sso_url_open_site'))
+        return self.get(
+            self._user_path(user_id, 'sso_url_open_site')).json()['url']
 
     def _user_path(self, *parts):
         path = '/'.join(['users'] + list(parts))

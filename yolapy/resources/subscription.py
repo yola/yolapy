@@ -79,7 +79,7 @@ class SubscriptionResourceMixin(object):
             'type': subscription_type,
             'user_id': user_id,
         }
-        self.post(self._subscription_path(), data=data)
+        return self.post(self._subscription_path(), data=data).json()
 
     def _subscription_path(self, *parts):
         path = '/'.join(['subscriptions'] + list(parts))

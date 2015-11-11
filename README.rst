@@ -40,10 +40,28 @@ To run the tests::
 
     $ nosetests
 
-To lint your code automatically when you make changes::
+Integration tests are not run by default. To run them, you must set up an
+integration environment and edit the test settings::
+
+    $ cp tests/test_integration/test_settings.py.sample \
+         tests/test_integration/test_settings.py
+
+**Note:** Try not to run the tests agains the Yola QA environment. It gets
+used for manual testing and we don't want to clutter it up with users created
+in automated test runs.
+
+Then you can run the integration tests explicitly::
+
+    $ nosetests tests/test_integration
+
+To test and lint your code automatically when you make changes::
 
     $ cp tube.py.sample tube.py
     $ stir
+
+To open a REPL with a `Yola` client initialized with your `test_settings`::
+
+    $ python -i shell.py
 
 Documentation
 -------------

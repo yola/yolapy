@@ -19,6 +19,7 @@ setup(
     license='MIT (Expat)',
     url='https://github.com/yola/yolapy',
     packages=find_packages(),
+    test_suite='nose.collector',
     classifiers=[
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2',
@@ -27,5 +28,8 @@ setup(
     ],
     install_requires=[
         'demands >= 1.0.6, < 2.0.0',
+    ],
+    tests_require=[
+        'nose >= 1.3.0, < 1.4.0',
     ],
 )

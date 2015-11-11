@@ -37,9 +37,11 @@ htmlcov/
 .tox/
 .coverage
 .cache
+.knows
 nosetests.xml
 coverage.xml
 tube.py
+tests/test_integration/test_settings.py
 
 # Translations
 *.mo
