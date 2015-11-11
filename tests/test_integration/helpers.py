@@ -9,7 +9,7 @@ def create_partner(service, **custom_attrs):
         attrs = {
             'id': 'WL_TEST-%s' % unique_id,
             'name': 'TEST',
-            'parent_partner_id': 'WL_YOLA',
+            'parent_partner_id': service.username,
             'properties': {'website': 'example.com'},
         }
         attrs.update(custom_attrs)
@@ -26,7 +26,7 @@ def create_user(service, **custom_attrs):
         'email': 'test+%s@yola.com' % uuid4().hex,
         'name': 'John',
         'surname': 'Smith',
-        'partner_id': 'WL_YOLA',
+        'partner_id': service.username,
         'preferences': {},
     }
     attrs.update(custom_attrs)
