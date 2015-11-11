@@ -44,7 +44,7 @@ Integration tests are not run by default. To run them, you must set up an
 integration environment and edit the test settings::
 
     $ cp tests/test_integration/test_settings.py.sample \
-    $    tests/test_integration/test_settings.py
+         tests/test_integration/test_settings.py
 
 **Note:** Try not to run the tests agains the Yola QA environment. It gets
 used for manual testing and we don't want to clutter it up with users created
