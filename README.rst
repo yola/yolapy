@@ -46,9 +46,6 @@ integration environment and edit the test settings::
     $ cp tests/test_integration/test_settings.py.sample \
     $    tests/test_integration/test_settings.py
 
-Yola devs can get test auth credentials using the instructions on
-[this wiki page][service-dev-wiki].
-
 **Note:** Try not to run the tests agains the Yola QA environment. It gets
 used for manual testing and we don't want to clutter it up with users created
 in automated test runs.
@@ -79,6 +76,3 @@ You can test your doc changes locally with::
     $ cd docs
     $ make html
     $ open _build/html/index.html
-
-
-[service-dev-wiki]: https://github.com/yola/wiki/wiki/Service-and-Client-guidelines#development
