@@ -1,3 +1,11 @@
+0.1.5 (2015-11-23)
+------------------
+
+* Return values from `change_subscription_type` and `activate_trial_subscription`
+  methods.
+* Fixed failing integration tests.
+
+
 0.1.4 (2015-11-19)
 ------------------
 
