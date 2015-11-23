@@ -42,8 +42,8 @@ class TestYolaSubscription(YolaServiceTestCase):
 
     def test_can_activate_a_trial_subscription(self):
         user = create_user(self.service, partner_id=self.partner['id'])
-        sub = self.service.create_subscription('wl_basic', user['id'], {
-              'trial': True})
+        sub = self.service.create_subscription(
+            'wl_basic', user['id'], {'trial': True})
         self.assertTrue(sub['properties']['trial'])
 
         activated_sub = self.service.activate_trial_subscription(sub['id'])
@@ -51,8 +51,8 @@ class TestYolaSubscription(YolaServiceTestCase):
 
     def test_can_change_subscription_type(self):
         user = create_user(self.service, partner_id=self.partner['id'])
-        sub = self.service.create_subscription('wl_basic', user['id'], {
-              'trial': True})
+        sub = self.service.create_subscription(
+            'wl_basic', user['id'], {'trial': True})
         self.assertEqual(sub['type'], 'wl_basic')
 
         modified_sub = self.service.change_subscription_type(
