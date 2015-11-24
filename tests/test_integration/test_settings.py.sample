@@ -1,2 +1,2 @@
-url = 'https://wl-test.example.com/'
+url = 'https://wl.<test>.env.yola.net/'
 auth = ('username', 'password')

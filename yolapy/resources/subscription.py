@@ -37,31 +37,35 @@ class SubscriptionResourceMixin(object):
 
         See https://wl.qa.yola.net/subscriptions/ for available types.
         """
-        self.post(self._subscription_path(subscription_id, 'change_type'),
-                  data={'new_type': new_type})
+        return self.post(
+            self._subscription_path(subscription_id, 'change_type'),
+            data={'new_type': new_type}).json()
 
     def cancel_subscription(self, subscription_id, reason):
         """Cancel active subscription.
 
         >>> yola.cancel_subscription('subscription_id', 'some reason')
         """
-        self.post(self._subscription_path(subscription_id, 'cancel'),
-                  data={'reason': reason})
+        return self.post(
+            self._subscription_path(subscription_id, 'cancel'),
+            data={'reason': reason}).json()
 
     def reactivate_subscription(self, subscription_id, reason):
         """Re-activate a cancelled subscription.
 
         >>> yola.reactivate_subscription('subscription_id', 'some reason')
         """
-        self.post(self._subscription_path(subscription_id, 'reactivate'),
-                  data={'reason': reason})
+        return self.post(
+            self._subscription_path(subscription_id, 'reactivate'),
+            data={'reason': reason}).json()
 
     def activate_trial_subscription(self, subscription_id):
         """Convert trial subscription to active.
 
         >>> yola.activate_trial_subscription('subscription_id')
         """
-        self.post(self._subscription_path(subscription_id, 'remove_trial'))
+        return self.post(
+            self._subscription_path(subscription_id, 'remove_trial')).json()
 
     def create_subscription(self, subscription_type, user_id, properties):
         """Create a new subscription.
