@@ -46,16 +46,16 @@ class SubscriptionResourceMixin(object):
 
         >>> yola.cancel_subscription('subscription_id', 'some reason')
         """
-        self.post(self._subscription_path(subscription_id, 'cancel'),
-                  data={'reason': reason})
+        return self.post(self._subscription_path(subscription_id, 'cancel'),
+                  data={'reason': reason}).json()
 
     def reactivate_subscription(self, subscription_id, reason):
         """Re-activate a cancelled subscription.
 
         >>> yola.reactivate_subscription('subscription_id', 'some reason')
         """
-        self.post(self._subscription_path(subscription_id, 'reactivate'),
-                  data={'reason': reason})
+        return self.post(self._subscription_path(subscription_id, 'reactivate'),
+                  data={'reason': reason}).json()
 
     def activate_trial_subscription(self, subscription_id):
         """Convert trial subscription to active.
