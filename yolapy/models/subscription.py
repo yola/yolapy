@@ -12,6 +12,9 @@ class Subscription(object):
     :param billing_date: Datetime
     :param deprovision_date: Datetime
     :param expiry_date: Datetime
+    :param start_date: Datetime
+    :param status: Str, subscription status
+    :param term: Str, subscription billing term
     :param id: Str, subscription's 32 char ID
     :param properties: Dict, subscription properties. If unset will be
         defaulted to the client's configured username:
@@ -40,6 +43,10 @@ class Subscription(object):
         self.sku = sku
         self.type = type
         self.user_id = user_id
+        self.expiry_date = expiry_date
+        self.start_date = start_date
+        self.status = status
+        self.term = term
 
     @classmethod
     def list(cls, **kwargs):
