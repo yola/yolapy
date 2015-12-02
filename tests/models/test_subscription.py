@@ -1,4 +1,3 @@
-from datetime import datetime
 from unittest import TestCase
 
 from mock import patch
@@ -10,10 +9,10 @@ class SubscriptionTestCase(TestCase):
     fake_subscription_data = {
         'id': 'fake-sub-id-abcdef1234567890abcd',
         'auto_renew': False,
-        'billing_date': datetime.now(),
-        'deprovision_date': datetime.now(),
-        'expiry_date': datetime.now(),
-        'start_date': datetime.now(),
+        'billing_date': '2000-01-01',
+        'deprovision_date': '2000-01-01',
+        'expiry_date': '2000-01-01',
+        'start_date': '2000-01-01',
         'status': 'active',
         'sku': 123,
         'type': 'wl_basic',
