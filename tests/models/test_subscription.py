@@ -1,3 +1,4 @@
+from datetime import datetime
 from unittest import TestCase
 
 from mock import patch
@@ -6,6 +7,19 @@ from yolapy.models import Subscription
 
 
 class SubscriptionTestCase(TestCase):
+    fake_subscription_data = {
+        'id': 'fake-sub-id-abcdef1234567890abcd',
+        'auto_renew': False,
+        'billing_date': datetime.now(),
+        'deprovision_date': datetime.now(),
+        'expiry_date': datetime.now(),
+        'start_date': datetime.now(),
+        'status': 'active',
+        'sku': 123,
+        'type': 'wl_basic',
+        'user_id': 'fake-user-id-abcdef1234567890abc',
+        'term': 'P1M',
+    }
 
     def setUp(self):
         self._mock_client()
@@ -18,10 +32,15 @@ class SubscriptionTestCase(TestCase):
 
     def _stub_list_subscriptions(self):
         self.client.list_subscriptions.return_value = {
-            'results': [{
-                'id': 'fake-sub-id-abcdef1234567890abcd',
-            }],
+            'results': [self.fake_subscription_data],
         }
+
+
+class TestSubscription(SubscriptionTestCase):
+    def test_has_expected_attributes(self):
+        sub = Subscription(**self.fake_subscription_data)
+        for key, value in self.fake_subscription_data.iteritems():
+            self.assertEqual(getattr(sub, key), value)
 
 
 class SubscriptionList(SubscriptionTestCase):
