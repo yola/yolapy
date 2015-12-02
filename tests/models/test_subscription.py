@@ -38,7 +38,7 @@ class SubscriptionTestCase(TestCase):
 class TestSubscription(SubscriptionTestCase):
     def test_has_expected_attributes(self):
         sub = Subscription(**self.fake_subscription_data)
-        for key, value in self.fake_subscription_data.iteritems():
+        for key, value in self.fake_subscription_data.items():
             self.assertEqual(getattr(sub, key), value)
 
 
