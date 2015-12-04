@@ -1,3 +1,8 @@
+0.1.7 (2015-12-02)
+------------------
+
+* Update Subscription model to include all attributes returned from the API.
+
 0.1.6 (2015-12-01)
 ------------------
 
