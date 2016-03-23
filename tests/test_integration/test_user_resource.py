@@ -1,6 +1,7 @@
 import demands
 
-from tests.test_integration.helpers import create_site, create_user
+from tests.test_integration.helpers import (
+    create_site, create_user_with_subscription)
 from tests.test_integration.test_case import YolaServiceTestCase
 
 
@@ -16,7 +17,7 @@ class TestYolaUser(YolaServiceTestCase):
     @classmethod
     def _create_user(cls, **custom_attrs):
         custom_attrs.setdefault('name', 'John')
-        return create_user(cls.service, **custom_attrs)
+        return create_user_with_subscription(cls.service, **custom_attrs)
 
     def test_create_user(self):
         self.assertEqual(self.user['name'], 'John')

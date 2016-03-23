@@ -1,6 +1,7 @@
 from tests.test_integration.test_case import YolaServiceTestCase
 
-from tests.test_integration.helpers import create_site, create_user
+from tests.test_integration.helpers import (
+    create_site, create_user_with_subscription)
 
 
 class TestYolaSite(YolaServiceTestCase):
@@ -27,7 +28,7 @@ class TestYolaSite(YolaServiceTestCase):
         # no way to verify? just checking it doesn't raise for now...
 
     def test_change_site_owner(self):
-        new_user = create_user(self.service)
+        new_user = create_user_with_subscription(self.service)
         self.service.change_site_owner(self.site['id'], new_user['id'])
 
         site = self.service.get_site(self.site['id'])
