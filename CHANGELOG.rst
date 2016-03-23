@@ -2,6 +2,7 @@ DEV
 ----
 
 * **Breaking change:** Remove `Yola.suspend_user` and `Yola.resume_user`.
+* Add a `Site` model.
 
 0.1.7 (2015-12-02)
 ------------------
