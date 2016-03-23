@@ -65,20 +65,6 @@ class UserResourceMixin(object):
         """
         self.delete(self._user_path(user_id))
 
-    def suspend_user(self, user_id):
-        """Suspend a user.
-
-        >>> yola.suspend_user('user_id')
-        """
-        self.post(self._user_path(user_id, 'suspend'))
-
-    def resume_user(self, user_id):
-        """Resume a user.
-
-        >>> yola.resume_user('user_id')
-        """
-        self.post(self._user_path(user_id, 'resume'))
-
     def get_sso_create_site_url(self, user_id, domain):
         """Get SSO create site url for a particular user and domain.
 

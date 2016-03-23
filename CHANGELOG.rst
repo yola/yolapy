@@ -1,3 +1,8 @@
+DEV
+----
+
+* **Breaking change:** Remove `Yola.suspend_user` and `Yola.resume_user`.
+
 0.1.7 (2015-12-02)
 ------------------
 
