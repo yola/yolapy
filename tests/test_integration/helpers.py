@@ -7,7 +7,7 @@ def create_partner(service, **custom_attrs):
         unique_id = str(time()).replace('.', '')
 
         attrs = {
-            'id': 'WL_TEST-%s' % unique_id,
+            'id': 'WL_TEST_%s' % unique_id,
             'name': 'TEST',
             'parent_partner_id': service.username,
             'properties': {'website': 'example.com'},
