@@ -1,6 +1,7 @@
 DEV
 ----
 
+* `Yola.create_subscription` now returns the created subscription.
 * **Breaking change:** Remove `Yola.suspend_user` and `Yola.resume_user`.
 * Add a `Site` model.
 
