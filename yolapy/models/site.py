@@ -1,3 +1,5 @@
+from six import iteritems
+
 from yolapy.services import Yola
 
 
@@ -6,7 +8,7 @@ class Site(object):
 
     def __init__(self, **kwargs):
         self.publishing_data = kwargs.pop('publishing_data', {})
-        for key, val in kwargs.iteritems():
+        for key, val in iteritems(kwargs):
             setattr(self, key, val)
 
     @classmethod

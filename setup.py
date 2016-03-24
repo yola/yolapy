@@ -28,6 +28,7 @@ setup(
     ],
     install_requires=[
         'demands >= 1.1.0, < 2.0.0',
+        'six >= 1.9.0, < 1.10.0',
     ],
     tests_require=[
         'nose >= 1.3.0, < 1.4.0',
