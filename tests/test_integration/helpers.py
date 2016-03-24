@@ -7,7 +7,7 @@ def create_partner(service, **custom_attrs):
         unique_id = str(time()).replace('.', '')
 
         attrs = {
-            'id': 'WL_TEST-%s' % unique_id,
+            'id': 'WL_TEST_%s' % unique_id,
             'name': 'TEST',
             'parent_partner_id': service.username,
             'properties': {'website': 'example.com'},
@@ -33,13 +33,19 @@ def create_user(service, **custom_attrs):
     return service.create_user(**attrs)
 
 
+def create_user_with_subscription(service, **custom_attrs):
+    user = create_user(service, **custom_attrs)
+    service.create_subscription('wl_basic', user['id'], {})
+    return user
+
+
 def create_site(service, user_id=None):
     """Create test site for given user_id.
 
     If no user id is provided, a test user will be created.
     """
     if not user_id:
-        user_id = create_user(service)['id']
+        user_id = create_user_with_subscription(service)['id']
 
     serialized_site = {
         'id': uuid4().hex,
