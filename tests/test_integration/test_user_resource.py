@@ -46,17 +46,6 @@ class TestYolaUser(YolaServiceTestCase):
         with self.assertRaises(demands.HTTPServiceError):
             self.service.get_user(user['id'])
 
-    def test_suspend_and_resume_user(self):
-        self.assertTrue(self.user['active'])
-
-        self.service.suspend_user(self.user_id)
-        user = self.service.get_user(self.user_id)
-        self.assertFalse(user['active'])
-
-        self.service.resume_user(self.user_id)
-        user = self.service.get_user(self.user_id)
-        self.assertTrue(user['active'])
-
     def test_get_sso_create_site_url(self):
         url = self.service.get_sso_create_site_url(self.user_id, 'example.com')
         self.assertTrue(url.startswith('http'))
