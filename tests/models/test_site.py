@@ -30,14 +30,3 @@ class TestSiteGet(SiteTestCase):
         self.yola.get_site.assert_called_once_with('456')
         self.assertEqual(site.name, 'site name')
         self.assertEqual(site.id, '456')
-
-
-class TestSitePublishedDomain(SiteTestCase):
-    """Site.published_domain"""
-
-    def test_returns_None_if_no_publishing_data(self):
-        self.assertIsNone(Site().published_domain)
-
-    def test_returns_canonical_host_from_publishing_data(self):
-        site = Site(publishing_data={'canonical_host': 'abc.qa.yolasite.net'})
-        self.assertEqual(site.published_domain, 'abc.qa.yolasite.net')
