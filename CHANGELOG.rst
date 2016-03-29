@@ -1,5 +1,5 @@
-DEV
-----
+0.2.0 (2016-03-29)
+------------------
 
 * ``Yola.create_subscription`` now returns the created subscription.
 * **Breaking change:** Remove ``Yola.suspend_user`` and ``Yola.resume_user``.
