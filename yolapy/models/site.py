@@ -7,12 +7,12 @@ class Site(object):
     """Represents a Site resource on the Yola API."""
 
     def __init__(self, **kwargs):
-        self.fields = kwargs
+        self._fields = kwargs
         for key, val in iteritems(kwargs):
             setattr(self, key, val)
 
     def __eq__(self, other):
-        return self.fields == other.fields
+        return self._fields == other._fields
 
     @classmethod
     def get(cls, site_id):
