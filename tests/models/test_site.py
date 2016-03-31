@@ -30,3 +30,22 @@ class TestSiteGet(SiteTestCase):
         self.yola.get_site.assert_called_once_with('456')
         self.assertEqual(site.name, 'site name')
         self.assertEqual(site.id, '456')
+
+
+class TestSiteList(SiteTestCase):
+    """Site.list"""
+
+    def test_instantiates_list_of_sites_with_attrs_from_service(self):
+        self.yola.list_sites.return_value = {'results': [
+            {'id': '1'}, {'id': '2'},
+        ]}
+
+        sites = Site.list()
+
+        self.assertEqual(len(sites), 2)
+        self.assertIn(Site(id='1'), sites)
+        self.assertIn(Site(id='2'), sites)
+
+    def test_filters_sites_by_passed_fields(self):
+        Site.list(user_id='user123')
+        self.yola.list_sites.assert_called_once_with(user_id='user123')
