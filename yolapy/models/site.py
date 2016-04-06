@@ -1,5 +1,6 @@
 from six import iteritems
 
+from yolapy.constants import SiteStates
 from yolapy.services import Yola
 
 
@@ -8,6 +9,7 @@ class Site(object):
 
     def __init__(self, **kwargs):
         self._fields = kwargs
+        self.publishing_data = kwargs.pop('publishing_data', {})
         for key, val in iteritems(kwargs):
             setattr(self, key, val)
 
@@ -25,3 +27,7 @@ class Site(object):
         """Get a list of sites from the Yola API."""
         sites = Yola().list_sites(**filters)['results']
         return [Site(**s) for s in sites]
+
+    @property
+    def is_published(self):
+        return self.publishing_data.get('state') == SiteStates.PUBLISHED
