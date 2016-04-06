@@ -9,9 +9,9 @@ class Site(object):
 
     def __init__(self, **kwargs):
         self._fields = kwargs
-        self.publishing_data = kwargs.pop('publishing_data', {})
         for key, val in iteritems(kwargs):
             setattr(self, key, val)
+        self.publishing_data = kwargs.get('publishing_data') or {}
 
     def __eq__(self, other):
         return self._fields == other._fields
