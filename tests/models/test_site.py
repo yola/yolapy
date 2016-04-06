@@ -2,6 +2,7 @@ from unittest import TestCase
 
 from mock import patch
 
+from yolapy.constants import SiteStates
 from yolapy.models import Site
 
 
@@ -49,3 +50,19 @@ class TestSiteList(SiteTestCase):
     def test_filters_sites_by_passed_fields(self):
         Site.list(user_id='user123')
         self.yola.list_sites.assert_called_once_with(user_id='user123')
+
+
+class TestSiteIsPublished(SiteTestCase):
+    """Site.is_published"""
+
+    def test_false_if_no_publishing_data(self):
+        site = Site()
+        self.assertFalse(site.is_published)
+
+    def test_false_if_publishing_state_is_not_published(self):
+        site = Site(publishing_data={'state': 999})
+        self.assertFalse(site.is_published)
+
+    def test_true_if_publishing_state_is_published(self):
+        site = Site(publishing_data={'state': SiteStates.PUBLISHED})
+        self.assertTrue(site.is_published)
