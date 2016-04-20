@@ -36,20 +36,23 @@ class TestSiteGet(SiteTestCase):
 class TestSiteList(SiteTestCase):
     """Site.list"""
 
-    def test_instantiates_list_of_sites_with_attrs_from_service(self):
+    def setUp(self):
+        super(TestSiteList, self).setUp()
+
         self.yola.list_sites.return_value = {'results': [
             {'id': '1'}, {'id': '2'},
         ]}
 
-        sites = Site.list()
+        self.sites = Site.list(user_id='user123')
+        _, self.service_kwargs = self.yola.list_sites.call_args
 
-        self.assertEqual(len(sites), 2)
-        self.assertIn(Site(id='1'), sites)
-        self.assertIn(Site(id='2'), sites)
+    def test_instantiates_list_of_sites_with_attrs_from_service(self):
+        self.assertEqual(len(self.sites), 2)
+        self.assertIn(Site(id='1'), self.sites)
+        self.assertIn(Site(id='2'), self.sites)
 
     def test_filters_sites_by_passed_fields(self):
-        Site.list(user_id='user123')
-        self.yola.list_sites.assert_called_once_with(user_id='user123')
+        self.assertEqual(self.service_kwargs['user_id'], 'user123')
 
 
 class TestSiteIsPublished(SiteTestCase):
