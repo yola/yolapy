@@ -1,7 +1,6 @@
-from tests.test_integration.test_case import YolaServiceTestCase
-
 from tests.test_integration.helpers import (
     create_site, create_user_with_subscription)
+from tests.test_integration.test_case import YolaServiceTestCase
 
 
 class TestYolaSite(YolaServiceTestCase):
