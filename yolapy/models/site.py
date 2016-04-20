@@ -1,3 +1,4 @@
+from demands.pagination import PaginatedAPIIterator
 from six import iteritems
 
 from yolapy.constants import SiteStates
@@ -25,7 +26,7 @@ class Site(object):
     @classmethod
     def list(cls, **filters):
         """Get a list of sites from the Yola API."""
-        sites = Yola().list_sites(**filters)['results']
+        sites = PaginatedAPIIterator(Yola().list_sites, kwargs=filters)
         return [Site(**s) for s in sites]
 
     @property

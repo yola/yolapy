@@ -54,6 +54,9 @@ class TestSiteList(SiteTestCase):
     def test_filters_sites_by_passed_fields(self):
         self.assertEqual(self.service_kwargs['user_id'], 'user123')
 
+    def test_handles_pagination_automatically(self):
+        self.assertIn('page', self.service_kwargs)
+
 
 class TestSiteIsPublished(SiteTestCase):
     """Site.is_published"""
