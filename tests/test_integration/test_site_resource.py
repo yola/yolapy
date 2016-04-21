@@ -1,7 +1,7 @@
-from tests.test_integration.test_case import YolaServiceTestCase
-
 from tests.test_integration.helpers import (
     create_site, create_user_with_subscription)
+from tests.test_integration.test_case import YolaServiceTestCase
+from yolapy.models import Site
 
 
 class TestYolaSite(YolaServiceTestCase):
@@ -42,3 +42,8 @@ class TestYolaSite(YolaServiceTestCase):
         self.service.undelete_site(self.site['id'])
         site = self.service.get_site(self.site['id'])
         self.assertFalse(site['deleted_at'])
+
+    def test_list_sites_using_model(self):
+        sites = Site.list()
+        site_ids = [s.id for s in sites]
+        self.assertIn(self.site['id'], site_ids)

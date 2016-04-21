@@ -1,10 +1,10 @@
-from demands import HTTPServiceClient
+from demands import JSONServiceClient
 from yolapy.configuration import config as defaults
 from yolapy.resources import campaign, partner, site, subscription, user
 
 
 class Yola(
-        HTTPServiceClient, campaign.CampaignResourceMixin,
+        JSONServiceClient, campaign.CampaignResourceMixin,
         partner.PartnerResourceMixin, site.SiteResourceMixin,
         subscription.SubscriptionResourceMixin, user.UserResourceMixin):
     """Client for Yola's API.
@@ -38,7 +38,7 @@ class Yola(
 
             Yola(headers={'Header-Name': 'value'})
         """
-        config = {'send_as_json': True}
+        config = {}
         config.update(defaults)
         config.update(kwargs)
         assert(config['url'])
