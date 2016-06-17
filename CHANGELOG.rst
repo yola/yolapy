@@ -2,6 +2,7 @@ Dev
 ----
 
 * Handle pagination in Site.list
+* Add ``User.get`` class method that returns a populated User object
 
 0.2.2 (2016-04-06)
 ------------------
