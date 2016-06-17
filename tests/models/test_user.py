@@ -20,6 +20,37 @@ class TestUserClient(UserTestCase):
         self.assertEqual(User().client, self.client)
 
 
+class TestUserGet(UserTestCase):
+    """User.get"""
+
+    def test_instantiates_user_with_attrs_from_service(self):
+        self.client.get_user.return_value = {
+            'id': '123',
+            'name': 'Firstname',
+            'surname': 'Lastname',
+            'email': 'email@example.com',
+            'active': True,
+            'signupDate': '2016-01-01',
+            'deleted': '2016-02-01',
+            'partner_id': 'PARTNER',
+            'preferences': {'currency': 'USD'},
+        }
+
+        user = User.get('123')
+
+        self.client.get_user.assert_called_once_with('123')
+        self.assertEqual(user.id, '123')
+        self.assertEqual(user.active, True)
+        self.assertEqual(user.deleted, '2016-02-01')
+        self.assertEqual(user.signup_date, '2016-01-01')
+        self.assertEqual(user.partner_id, 'PARTNER')
+        self.assertEqual(user.name, 'Firstname')
+        self.assertEqual(user.surname, 'Lastname')
+        self.assertEqual(user.email, 'email@example.com')
+        self.assertEqual(user.name, 'Firstname')
+        self.assertDictEqual(user.preferences, {'currency': 'USD'})
+
+
 class TestUserSave(UserTestCase):
 
     def test_uses_service_to_create_a_new_user(self):

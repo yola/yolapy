@@ -54,6 +54,13 @@ class User(object):
         self.signup_date = signup_date
         self.surname = surname
 
+    @classmethod
+    def get(cls, user_id):
+        """Get a user from the Yola API."""
+        user_attributes = Yola().get_user(user_id)
+        user_attributes['signup_date'] = user_attributes.pop('signupDate')
+        return cls(**user_attributes)
+
     def _save_create(self):
         user = self.client.create_user(
             email=self.email,
