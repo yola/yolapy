@@ -1,3 +1,7 @@
+0.2.4 (2016-06-17)
+------------------
+* Fix mismatch between demands version in setup.py and requirements.txt
+
 0.2.3 (2016-06-17)
 ------------------
 
