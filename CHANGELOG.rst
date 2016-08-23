@@ -1,3 +1,8 @@
+Dev
+------------------
+* `Yola.get_sso_open_site_url` now accepts an optional `site_id` specifying the
+  site to generate a url for
+
 0.2.4 (2016-06-17)
 ------------------
 * Fix mismatch between demands version in setup.py and requirements.txt
