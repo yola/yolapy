@@ -13,6 +13,7 @@ class TestYolaUser(YolaServiceTestCase):
         super(TestYolaUser, cls).setUpClass()
         cls.user = cls._create_user()
         cls.user_id = cls.user['id']
+        cls.site = create_site(cls.service, cls.user_id)
 
     @classmethod
     def _create_user(cls, **custom_attrs):
@@ -51,6 +52,10 @@ class TestYolaUser(YolaServiceTestCase):
         self.assertTrue(url.startswith('http'))
 
     def test_get_sso_open_site_url(self):
-        create_site(self.service, self.user_id)
         url = self.service.get_sso_open_site_url(self.user_id)
         self.assertTrue(url.startswith('http'))
+
+    def test_get_sso_open_site_url_with_site_id(self):
+        url = self.service.get_sso_open_site_url(
+            self.user_id, site_id=self.site['id'])
+        self.assertIn(self.site['id'], url)
