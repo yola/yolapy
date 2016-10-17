@@ -13,7 +13,8 @@ class TestYolaSite(YolaServiceTestCase):
         cls.site = create_site(cls.service)
 
     def test_list_sites(self):
-        sites = self.service.list_sites(user_id=self.site['user_id'])['results']
+        sites = self.service.list_sites(
+            user_id=self.site['user_id'])['results']
         site_ids = [s['id'] for s in sites]
         self.assertIn(self.site['id'], site_ids)
 
@@ -23,10 +24,9 @@ class TestYolaSite(YolaServiceTestCase):
         self.assertEqual(site['id'], exptected_site_id)
 
     def test_disable_and_enable_site(self):
-        #~ self.service.disable_site(self.site['id'])
-        #~ self.service.enable_site(self.site['id'])
+        self.service.disable_site(self.site['id'])
+        self.service.enable_site(self.site['id'])
         # no way to verify? just checking it doesn't raise for now...
-        pass
 
     def test_change_site_owner(self):
         new_user = create_user_with_subscription(self.service)
