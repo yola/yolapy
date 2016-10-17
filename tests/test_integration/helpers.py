@@ -65,4 +65,6 @@ def create_site(service, user_id=None):
         'navigation': [],
     }
 
-    return service._create_site(**serialized_site)
+    site_resource = service._create_site(**serialized_site)
+    site_resource['user_id'] = user_id
+    return site_resource

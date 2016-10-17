@@ -3,6 +3,7 @@ Dev
 * Drop support for python 3.2
 * `Yola.get_sso_open_site_url` now accepts an optional `site_id` specifying the
   site to generate a url for
+* Use Demands >= 4.0.0
 
 0.2.4 (2016-06-17)
 ------------------

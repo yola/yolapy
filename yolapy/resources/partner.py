@@ -14,7 +14,7 @@ class PartnerResourceMixin(object):
 
         See https://wl.qa.yola.net/partners/ for available properties.
         """
-        return self.post(self._partner_path(), data=attributes).json()
+        return self.post(self._partner_path(), json=attributes).json()
 
     def get_partner(self, partner_id):
         """Return details for a particular partner.
@@ -38,7 +38,7 @@ class PartnerResourceMixin(object):
         >>> yola.update_partner('PARTNER_ID', name='New name')
         """
         return self.patch(
-            self._partner_path(partner_id), data=attributes).json()
+            self._partner_path(partner_id), json=attributes).json()
 
     def list_partners(self, **options):
         """Return paginated list of partners.

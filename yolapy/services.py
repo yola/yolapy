@@ -1,10 +1,10 @@
-from demands import JSONServiceClient
+from demands import HTTPServiceClient
 from yolapy.configuration import config as defaults
 from yolapy.resources import campaign, partner, site, subscription, user
 
 
 class Yola(
-        JSONServiceClient, campaign.CampaignResourceMixin,
+        HTTPServiceClient, campaign.CampaignResourceMixin,
         partner.PartnerResourceMixin, site.SiteResourceMixin,
         subscription.SubscriptionResourceMixin, user.UserResourceMixin):
     """Client for Yola's API.

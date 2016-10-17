@@ -13,7 +13,7 @@ class UserResourceMixin(object):
         >>> user['name']
         'John'
         """
-        response = self.post(self._user_path(), data=attributes).json()
+        response = self.post(self._user_path(), json=attributes).json()
         response['signup_date'] = response.pop('signupDate')
         return response
 
@@ -22,7 +22,7 @@ class UserResourceMixin(object):
 
         >>> yola.update_user('user_id', name='New name')
         """
-        return self.patch(self._user_path(user_id), data=attributes).json()
+        return self.patch(self._user_path(user_id), json=attributes).json()
 
     def get_user(self, user_id):
         """Get details for a particular user.
