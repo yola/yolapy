@@ -13,7 +13,8 @@ class TestYolaSite(YolaServiceTestCase):
         cls.site = create_site(cls.service)
 
     def test_list_sites(self):
-        sites = self.service.list_sites(page_size=999)['results']
+        sites = self.service.list_sites(
+            user_id=self.site['user_id'])['results']
         site_ids = [s['id'] for s in sites]
         self.assertIn(self.site['id'], site_ids)
 
@@ -33,6 +34,7 @@ class TestYolaSite(YolaServiceTestCase):
 
         site = self.service.get_site(self.site['id'])
         self.assertEqual(site['user_id'], new_user['id'])
+        self.site['user_id'] = new_user['id']
 
     def test_delete_and_undelete_site(self):
         self.service.delete_site(self.site['id'])

@@ -39,7 +39,7 @@ class SubscriptionResourceMixin(object):
         """
         return self.post(
             self._subscription_path(subscription_id, 'change_type'),
-            data={'new_type': new_type}).json()
+            json={'new_type': new_type}).json()
 
     def cancel_subscription(self, subscription_id, reason):
         """Cancel active subscription.
@@ -48,7 +48,7 @@ class SubscriptionResourceMixin(object):
         """
         return self.post(
             self._subscription_path(subscription_id, 'cancel'),
-            data={'reason': reason}).json()
+            json={'reason': reason}).json()
 
     def reactivate_subscription(self, subscription_id, reason):
         """Re-activate a cancelled subscription.
@@ -57,7 +57,7 @@ class SubscriptionResourceMixin(object):
         """
         return self.post(
             self._subscription_path(subscription_id, 'reactivate'),
-            data={'reason': reason}).json()
+            json={'reason': reason}).json()
 
     def activate_trial_subscription(self, subscription_id):
         """Convert trial subscription to active.
@@ -83,7 +83,7 @@ class SubscriptionResourceMixin(object):
             'type': subscription_type,
             'user_id': user_id,
         }
-        return self.post(self._subscription_path(), data=data).json()
+        return self.post(self._subscription_path(), json=data).json()
 
     def _subscription_path(self, *parts):
         path = '/'.join(['subscriptions'] + list(parts))
