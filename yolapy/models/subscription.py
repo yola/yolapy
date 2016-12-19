@@ -5,20 +5,21 @@ class Subscription(object):
 
     """Construct a Subscription.
 
-    :param auto_renew: Bool
-    :param billing_date: Datetime
-    :param deprovision_date: Datetime
-    :param expiry_date: Datetime
-    :param start_date: Datetime
+    :param id: Str, subscription's 32 char ID
+    :param created_at: Str, datetime when subscription was created
+    :param updated_at: Str, datetime when subscription was updated last time
+    :param partner_id: Str, ID of the sub's partner
+    :param user_id: Str, 32 character ID of the sub's user
     :param status: Str, subscription status
     :param term: Str, subscription billing term
-    :param id: Str, subscription's 32 char ID
-    :param properties: Dict, subscription properties. If unset will be
-        defaulted to the client's configured username:
-        ``{"partner_id": "<CLIENT_USERNAME>"}``.
-    :param sku: Int
+    :param sku: Str, SKU of related product
     :param type: Str, subscription type
-    :param user_id: Str, 32 character ID of the sub's user
+    :param start_date: Str, subscription's start date
+    :param expiry_date: Str, subscription's expiry date
+    :param billing_date: Str, subscription's billing date
+    :param deprovision_date: Str, subscription's deprovision date
+    :param auto_renew: Bool
+    :param properties: Dict, subscription's properties
 
     :return: Subscription
     :rtype: yolapy.models.Subscription
