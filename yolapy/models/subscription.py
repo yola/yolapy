@@ -25,25 +25,15 @@ class Subscription(object):
 
     """
 
-    def __init__(
-            self, auto_renew=False, billing_date=None, deprovision_date=None,
-            expiry_date=None, id=None, properties=None, sku=None,
-            start_date=None, status=None, term=None, type=None, user_id=None):
-        self.client = Yola()
+    _fields = (
+        'id', 'created_at', 'updated_at', 'partner_id', 'user_id', 'status',
+        'term', 'sku', 'type', 'start_date', 'expiry_date', 'billing_date',
+        'deprovision_date', 'auto_renew', 'properties')
 
-        self.auto_renew = auto_renew
-        self.billing_date = billing_date
-        self.deprovision_date = deprovision_date
-        self.id = id
-        self.properties = properties or {}
-        self.properties.setdefault('partner_id', self.client.username)
-        self.sku = sku
-        self.type = type
-        self.user_id = user_id
-        self.expiry_date = expiry_date
-        self.start_date = start_date
-        self.status = status
-        self.term = term
+    def __init__(self, **fields):
+        self.client = Yola()
+        for field_name in self._fields:
+            setattr(self, field_name, fields[field_name])
 
     @classmethod
     def list(cls, **kwargs):
