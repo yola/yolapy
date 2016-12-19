@@ -5,9 +5,6 @@ class Subscription(object):
 
     """Construct a Subscription.
 
-    The data in a Subscription instance does not persist until it has
-    been saved.
-
     :param auto_renew: Bool
     :param billing_date: Datetime
     :param deprovision_date: Datetime
@@ -52,7 +49,7 @@ class Subscription(object):
     def list(cls, **kwargs):
         """Return a filtered list of Subscriptions.
 
-        Useage::
+        Usage::
 
            >>> from yolapy.models import Subscription
            >>> user_id = 'abcdef1234567890abcdef1234567890'
