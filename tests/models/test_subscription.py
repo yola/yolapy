@@ -8,16 +8,20 @@ from yolapy.models import Subscription
 class SubscriptionTestCase(TestCase):
     fake_subscription_data = {
         'id': 'fake-sub-id-abcdef1234567890abcd',
+        'created_at': '2016-05-31 13:11:36',
+        'updated_at': '2016-05-31 13:11:38',
         'auto_renew': False,
         'billing_date': '2000-01-01',
         'deprovision_date': '2000-01-01',
         'expiry_date': '2000-01-01',
         'start_date': '2000-01-01',
         'status': 'active',
-        'sku': 123,
+        'sku': '123',
         'type': 'wl_basic',
         'user_id': 'fake-user-id-abcdef1234567890abc',
+        'partner_id': 'partner-id-foo123',
         'term': 'P1M',
+        'properties': {}
     }
 
     def setUp(self):
@@ -56,13 +60,3 @@ class SubscriptionList(SubscriptionTestCase):
         self.assertEqual(len(subs), 1)
         subscription = subs[0]
         self.assertEqual(subscription.id, 'fake-sub-id-abcdef1234567890abcd')
-
-
-class SubscriptionProperties(SubscriptionTestCase):
-
-    """Subscription.properties['partner_id']."""
-
-    def test_uses_the_client_config_as_a_default(self):
-        self.client.username = 'partner-id-foo123'
-        sub = Subscription()
-        self.assertEqual(sub.properties['partner_id'], 'partner-id-foo123')
