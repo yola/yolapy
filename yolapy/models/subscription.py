@@ -5,54 +5,42 @@ class Subscription(object):
 
     """Construct a Subscription.
 
-    The data in a Subscription instance does not persist until it has
-    been saved.
-
+    :param id: Str, 32 char ID
+    :param created_at: Str, creation time
+    :param updated_at: Str, last update time
+    :param partner_id: Str, ID of the partner
+    :param user_id: Str, 32 character ID of the owner
+    :param status: Str
+    :param term: Str
+    :param sku: Str, SKU of the related product
+    :param type: Str,
+    :param start_date: Str
+    :param expiry_date: Str
+    :param billing_date: Str
+    :param deprovision_date: Str
     :param auto_renew: Bool
-    :param billing_date: Datetime
-    :param deprovision_date: Datetime
-    :param expiry_date: Datetime
-    :param start_date: Datetime
-    :param status: Str, subscription status
-    :param term: Str, subscription billing term
-    :param id: Str, subscription's 32 char ID
-    :param properties: Dict, subscription properties. If unset will be
-        defaulted to the client's configured username:
-        ``{"partner_id": "<CLIENT_USERNAME>"}``.
-    :param sku: Int
-    :param type: Str, subscription type
-    :param user_id: Str, 32 character ID of the sub's user
+    :param properties: Dict
 
     :return: Subscription
     :rtype: yolapy.models.Subscription
 
     """
 
-    def __init__(
-            self, auto_renew=False, billing_date=None, deprovision_date=None,
-            expiry_date=None, id=None, properties=None, sku=None,
-            start_date=None, status=None, term=None, type=None, user_id=None):
-        self.client = Yola()
+    _fields = (
+        'id', 'created_at', 'updated_at', 'partner_id', 'user_id', 'status',
+        'term', 'sku', 'type', 'start_date', 'expiry_date', 'billing_date',
+        'deprovision_date', 'auto_renew', 'properties')
 
-        self.auto_renew = auto_renew
-        self.billing_date = billing_date
-        self.deprovision_date = deprovision_date
-        self.id = id
-        self.properties = properties or {}
-        self.properties.setdefault('partner_id', self.client.username)
-        self.sku = sku
-        self.type = type
-        self.user_id = user_id
-        self.expiry_date = expiry_date
-        self.start_date = start_date
-        self.status = status
-        self.term = term
+    def __init__(self, **fields):
+        self.client = Yola()
+        for field_name in self._fields:
+            setattr(self, field_name, fields.get(field_name))
 
     @classmethod
     def list(cls, **kwargs):
         """Return a filtered list of Subscriptions.
 
-        Useage::
+        Usage::
 
            >>> from yolapy.models import Subscription
            >>> user_id = 'abcdef1234567890abcdef1234567890'

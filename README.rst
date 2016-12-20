@@ -46,7 +46,7 @@ integration environment and edit the test settings::
     $ cp tests/test_integration/test_settings.py.sample \
          tests/test_integration/test_settings.py
 
-**Note:** Try not to run the tests agains the Yola QA environment. It gets
+**Note:** Try not to run the tests against the Yola QA environment. It gets
 used for manual testing and we don't want to clutter it up with users created
 in automated test runs.
 
