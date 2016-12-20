@@ -6,8 +6,8 @@ class Subscription(object):
     """Construct a Subscription.
 
     :param id: Str, subscription's 32 char ID
-    :param created_at: Str, datetime when subscription was created
-    :param updated_at: Str, datetime when subscription was updated last time
+    :param created_at: Str, creation time
+    :param updated_at: Str, last update time
     :param partner_id: Str, ID of the sub's partner
     :param user_id: Str, 32 character ID of the sub's user
     :param status: Str, subscription status
