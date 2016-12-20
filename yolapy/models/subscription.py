@@ -5,21 +5,21 @@ class Subscription(object):
 
     """Construct a Subscription.
 
-    :param id: Str, subscription's 32 char ID
+    :param id: Str, 32 char ID
     :param created_at: Str, creation time
     :param updated_at: Str, last update time
-    :param partner_id: Str, ID of the sub's partner
-    :param user_id: Str, 32 character ID of the sub's user
-    :param status: Str, subscription status
-    :param term: Str, subscription billing term
-    :param sku: Str, SKU of related product
-    :param type: Str, subscription type
-    :param start_date: Str, subscription's start date
-    :param expiry_date: Str, subscription's expiry date
-    :param billing_date: Str, subscription's billing date
-    :param deprovision_date: Str, subscription's deprovision date
+    :param partner_id: Str, ID of the partner
+    :param user_id: Str, 32 character ID of the owner
+    :param status: Str
+    :param term: Str
+    :param sku: Str, SKU of the related product
+    :param type: Str,
+    :param start_date: Str
+    :param expiry_date: Str
+    :param billing_date: Str
+    :param deprovision_date: Str
     :param auto_renew: Bool
-    :param properties: Dict, subscription's properties
+    :param properties: Dict
 
     :return: Subscription
     :rtype: yolapy.models.Subscription
