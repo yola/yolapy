@@ -34,7 +34,7 @@ class Subscription(object):
     def __init__(self, **fields):
         self.client = Yola()
         for field_name in self._fields:
-            setattr(self, field_name, fields[field_name])
+            setattr(self, field_name, fields.get(field_name))
 
     @classmethod
     def list(cls, **kwargs):
