@@ -1,7 +1,6 @@
-DEV
+0.4.0
 ------------------
 * Update Subscription model to expect the actual data from service response.
-
 
 0.3.0
 ------------------
