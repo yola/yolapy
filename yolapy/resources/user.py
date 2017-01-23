@@ -76,8 +76,8 @@ class UserResourceMixin(object):
             params.update({'with_ssl_support': 1})
 
         return self.get(
-            self._user_path(user_id, 'sso_url_create_site'),
-            params={'domain': domain}).json()['url']
+            self._user_path(
+                user_id, 'sso_url_create_site'), params=params).json()['url']
 
     def get_sso_open_site_url(self, user_id, site_id=None):
         """Get SSO open site url for a particular user.

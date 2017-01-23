@@ -61,8 +61,8 @@ class SiteResourceMixin(object):
         """
         data = {'partner_domain': new_domain}
         if with_ssl_support:
-            data.update({'with_ssl_support': True})
-        self.put(self._site_path(site_id, 'partner_domain'), data=data)
+            data.update({'with_ssl_support': 1})
+        self.put(self._site_path(site_id, 'partner_domain'), json=data)
 
     def delete_site(self, site_id):
         """Delete a site.
