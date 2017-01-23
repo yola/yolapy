@@ -65,11 +65,16 @@ class UserResourceMixin(object):
         """
         self.delete(self._user_path(user_id))
 
-    def get_sso_create_site_url(self, user_id, domain):
+    def get_sso_create_site_url(
+            self, user_id, domain, with_ssl_support=False):
         """Get SSO create site url for a particular user and domain.
 
         >>> yola.get_sso_create_site_url('user_id', 'example.com')
         """
+        params = {'domain': domain}
+        if with_ssl_support:
+            params.update({'with_ssl_support': 1})
+
         return self.get(
             self._user_path(user_id, 'sso_url_create_site'),
             params={'domain': domain}).json()['url']

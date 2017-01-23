@@ -54,12 +54,14 @@ class SiteResourceMixin(object):
         data = {'id': new_user_id}
         self.post(self._site_path(site_id, 'change_owner'), data=data)
 
-    def change_site_domain(self, site_id, new_domain):
+    def change_site_domain(self, site_id, new_domain, with_ssl_support=False):
         """Change site's domain.
 
         >>> yola.change_site_domain('site_id', 'newdomain.com')
         """
         data = {'partner_domain': new_domain}
+        if with_ssl_support:
+            data.update({'with_ssl_support': True})
         self.put(self._site_path(site_id, 'partner_domain'), data=data)
 
     def delete_site(self, site_id):
