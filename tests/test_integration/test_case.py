@@ -5,7 +5,7 @@ from yolapy.configuration import configure
 
 
 # we have to configure before importing
-configure(auth=settings.auth, url=settings.url)
+configure(auth=settings.auth, url=settings.url, verify_ssl=False)
 from yolapy.services import Yola
 
 
