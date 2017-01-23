@@ -1,3 +1,8 @@
+DEV
+------------------
+* Add support of `with_ssl_support` flag for methods
+  `User.get_sso_create_site_url()` and `Site.change_site_domain()`.
+
 0.4.0
 ------------------
 * Update Subscription model to expect the actual data from service response.
