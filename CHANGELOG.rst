@@ -2,6 +2,7 @@ DEV
 ------------------
 * Remove `Yola.subscribe_to_campaign()` and `Yola.cancel_campaign_subscription`
   methods, they aren't allowed to be used externally.
+* Add SiteImport model and api for creation and listing
 
 
 0.4.2
