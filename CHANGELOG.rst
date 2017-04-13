@@ -2,6 +2,7 @@ DEV
 ------------------
 * Remove `with_ssl_support` flag for methods
   `User.get_sso_create_site_url()` and `Site.change_site_domain()`.
+* Add `Yola.create_cname_zone()` method.
 
 
 0.4.1
