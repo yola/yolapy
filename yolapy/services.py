@@ -1,12 +1,14 @@
 from demands import HTTPServiceClient
 from yolapy.configuration import config as defaults
-from yolapy.resources import campaign, partner, site, subscription, user
+from yolapy.resources import (
+    campaign, cname_zone, partner, site, subscription, user)
 
 
 class Yola(
         HTTPServiceClient, campaign.CampaignResourceMixin,
-        partner.PartnerResourceMixin, site.SiteResourceMixin,
-        subscription.SubscriptionResourceMixin, user.UserResourceMixin):
+        cname_zone.CnameZoneMixin, partner.PartnerResourceMixin,
+        site.SiteResourceMixin, subscription.SubscriptionResourceMixin,
+        user.UserResourceMixin):
     """Client for Yola's API.
 
     If using yolapy.configuration::
