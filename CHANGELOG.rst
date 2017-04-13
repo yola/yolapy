@@ -1,4 +1,4 @@
-DEV
+0.4.2
 ------------------
 * Remove `with_ssl_support` flag for methods
   `User.get_sso_create_site_url()` and `Site.change_site_domain()`.
