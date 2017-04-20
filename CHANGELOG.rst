@@ -1,3 +1,9 @@
+DEV
+------------------
+* Remove `Yola.subscribe_to_campaign()` and `Yola.cancel_campaign_subscription`
+  mehtods, they aren't not allowed to be used externally.
+
+
 0.4.2
 ------------------
 * Remove `with_ssl_support` flag for methods
