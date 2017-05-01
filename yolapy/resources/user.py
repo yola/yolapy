@@ -65,24 +65,26 @@ class UserResourceMixin(object):
         """
         self.delete(self._user_path(user_id))
 
-    def get_sso_create_site_url(self, user_id, domain):
+    def get_sso_create_site_url(self, user_id, domain, locale=None):
         """Get SSO create site url for a particular user and domain.
 
         >>> yola.get_sso_create_site_url('user_id', 'example.com')
         """
-        params = {'domain': domain}
+        params = {'domain': domain, 'locale': locale}
         return self.get(
             self._user_path(
                 user_id, 'sso_url_create_site'), params=params).json()['url']
 
-    def get_sso_open_site_url(self, user_id, site_id=None):
+    def get_sso_open_site_url(self, user_id, site_id=None, locale=None):
         """Get SSO open site url for a particular user.
 
         >>> yola.get_sso_open_site_url('user_id')
         """
         return self.get(
             self._user_path(user_id, 'sso_url_open_site'), params={
-                'site_id': site_id}).json()['url']
+                'site_id': site_id,
+                'locale': locale
+            }).json()['url']
 
     def _user_path(self, *parts):
         path = '/'.join(['users'] + list(parts))
