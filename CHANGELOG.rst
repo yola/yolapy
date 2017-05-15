@@ -1,8 +1,11 @@
-DEV
+0.5.0
 ------------------
 * Remove `Yola.subscribe_to_campaign()` and `Yola.cancel_campaign_subscription`
   methods, they aren't allowed to be used externally.
 * Add SiteImport model and api for creation and listing
+* `Yola.get_sso_create_site_url` and `Yola.get_sso_open_site_url`
+  now accept optional `locale` arguments which define what language the
+  returned urls should be generated for
 
 
 0.4.2
