@@ -1,3 +1,9 @@
+DEV
+------------------
+* Fix bug caused by improper call signature to `create_site_import` method on
+  `Yola` service
+
+
 0.5.0
 ------------------
 * Remove `Yola.subscribe_to_campaign()` and `Yola.cancel_campaign_subscription`
