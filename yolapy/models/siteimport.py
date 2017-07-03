@@ -14,7 +14,7 @@ class SiteImport(object):
     @classmethod
     def create(cls, url, user_id):
         """Create a SiteImport with the Yola API"""
-        return cls(**Yola().create_site_import(url, user_id))
+        return cls(**Yola().create_site_import(url=url, user_id=user_id))
 
     @classmethod
     def get(cls, id):

@@ -7,7 +7,7 @@ from yolapy.models import siteimport
 
 class SiteImportTestCase(unittest.TestCase):
     def setUp(self):
-        patcher = patch.object(siteimport, 'Yola')
+        patcher = patch.object(siteimport, 'Yola', autospec=True)
         self.yola = patcher.start().return_value
         self.addCleanup(patcher.stop)
 
@@ -22,7 +22,7 @@ class SiteImportCreate(SiteImportTestCase):
 
     def test_creates_site_import_with_passed_arguments(self):
         self.yola.create_site_import.assert_called_once_with(
-            self.url, self.user_id)
+            url=self.url, user_id=self.user_id)
 
     def test_returns_site_import_instance(self):
         self.assertIsInstance(self.siteimport, siteimport.SiteImport)
