@@ -2,7 +2,6 @@ from yolapy.services import Yola
 
 
 class User(object):
-
     """Yola User - a service model that uses the yola client for persistence.
 
     Example use:
@@ -43,7 +42,6 @@ class User(object):
         :rtype: yolapy.users.models.User
 
         """
-
         self.client = Yola()
 
         for field_name in self._fields:
