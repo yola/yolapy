@@ -22,8 +22,8 @@ class TestUserClient(UserTestCase):
 
 class TestUserGet(UserTestCase):
     """User.get"""
-
-    def test_instantiates_user_with_attrs_from_service(self):
+    def setUp(self):
+        super(TestUserGet, self).setUp()
         self.client.get_user.return_value = {
             'id': '123',
             'name': 'Firstname',
@@ -34,21 +34,27 @@ class TestUserGet(UserTestCase):
             'deleted': '2016-02-01',
             'partner_id': 'PARTNER',
             'preferences': {'currency': 'USD'},
+            'preferred_greeting': 'hi',
         }
 
-        user = User.get('123')
+        self.user = User.get('123')
 
+    def test_instantiates_user_with_attrs_from_service(self):
         self.client.get_user.assert_called_once_with('123')
-        self.assertEqual(user.id, '123')
-        self.assertEqual(user.active, True)
-        self.assertEqual(user.deleted, '2016-02-01')
-        self.assertEqual(user.signup_date, '2016-01-01')
-        self.assertEqual(user.partner_id, 'PARTNER')
-        self.assertEqual(user.name, 'Firstname')
-        self.assertEqual(user.surname, 'Lastname')
-        self.assertEqual(user.email, 'email@example.com')
-        self.assertEqual(user.name, 'Firstname')
-        self.assertDictEqual(user.preferences, {'currency': 'USD'})
+        self.assertEqual(self.user.id, '123')
+        self.assertEqual(self.user.active, True)
+        self.assertEqual(self.user.deleted, '2016-02-01')
+        self.assertEqual(self.user.signup_date, '2016-01-01')
+        self.assertEqual(self.user.partner_id, 'PARTNER')
+        self.assertEqual(self.user.name, 'Firstname')
+        self.assertEqual(self.user.surname, 'Lastname')
+        self.assertEqual(self.user.email, 'email@example.com')
+        self.assertEqual(self.user.name, 'Firstname')
+        self.assertDictEqual(self.user.preferences, {'currency': 'USD'})
+
+    def test_undeclared_fields_are_not_added_as_an_attribute(self):
+        with self.assertRaises(AttributeError):
+            self.user.greeting
 
 
 class TestUserSave(UserTestCase):

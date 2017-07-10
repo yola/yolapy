@@ -2,6 +2,9 @@ DEV
 ------------------
 * Fix bug caused by improper call signature to `create_site_import` method on
   `Yola` service
+* Update `User.__init__` to accept **kwargs rather than named arguments. This
+  makes it consistent with other yolapy models and more flexible in case of
+  changes to data returned by the service.
 
 
 0.5.0

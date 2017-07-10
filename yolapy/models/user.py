@@ -2,7 +2,6 @@ from yolapy.services import Yola
 
 
 class User(object):
-
     """Yola User - a service model that uses the yola client for persistence.
 
     Example use:
@@ -20,9 +19,10 @@ class User(object):
     ```
     """
 
-    def __init__(self, active=False, deleted=None, email=None, id=None,
-                 name=None, partner_id=None, preferences=None,
-                 signup_date=None, surname=None):
+    _fields = ('active', 'deleted', 'email', 'id', 'name', 'partner_id',
+               'preferences', 'signup_date', 'surname')
+
+    def __init__(self, **kwargs):
         """Construct a Yola User.
 
         The data in a User instance does not persist until it has been saved.
@@ -44,15 +44,12 @@ class User(object):
         """
         self.client = Yola()
 
-        self.partner_id = partner_id or self.client.username
-        self.active = active
-        self.deleted = deleted
-        self.email = email
-        self.id = id
-        self.name = name
-        self.preferences = preferences or {}
-        self.signup_date = signup_date
-        self.surname = surname
+        for field_name in self._fields:
+            setattr(self, field_name, kwargs.get(field_name))
+
+        self.partner_id = self.partner_id or self.client.username
+        self.active = self.active or False
+        self.preferences = self.preferences or {}
 
     @classmethod
     def get(cls, user_id):
