@@ -1,8 +1,12 @@
-DEV
+0.6.0
 ------------------
+* Remove `six` dependency
+* Remove `User.save` method
+* Add `User.create` classmethod
+* Add `Yola.get_sso_url` method
 * Fix bug caused by improper call signature to `create_site_import` method on
   `Yola` service
-* Update `User.__init__` to accept **kwargs rather than named arguments. This
+* Update `User.__init__` to accept `**kwargs` rather than named arguments. This
   makes it consistent with other yolapy models and more flexible in case of
   changes to data returned by the service.
 

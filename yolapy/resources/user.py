@@ -31,7 +31,9 @@ class UserResourceMixin(object):
         >>> user['name']
         'John'
         """
-        return self.get(self._user_path(user_id)).json()
+        response = self.get(self._user_path(user_id)).json()
+        response['signup_date'] = response.pop('signupDate')
+        return response
 
     def list_users(self, **filters):
         """Return paginated list of users.
@@ -84,6 +86,18 @@ class UserResourceMixin(object):
             self._user_path(user_id, 'sso_url_open_site'), params={
                 'site_id': site_id,
                 'locale': locale
+            }).json()['url']
+
+    def get_sso_url(self, user_id, site_id=None,
+                    destination='editor', locale=None):
+        """Get SSO url for a particular ws user
+        >>> yola.get_sso_url('user_id')
+        """
+        return self.get(
+            self._user_path(user_id, 'sso-url'), params={
+                'site_id': site_id,
+                'destination': destination,
+                'locale': locale,
             }).json()['url']
 
     def _user_path(self, *parts):

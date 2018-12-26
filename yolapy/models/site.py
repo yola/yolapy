@@ -1,5 +1,4 @@
 from demands.pagination import PaginatedResults
-from six import iteritems
 
 from yolapy.constants import SiteStates
 from yolapy.services import Yola
@@ -10,7 +9,7 @@ class Site(object):
 
     def __init__(self, **kwargs):
         self._fields = kwargs
-        for key, val in iteritems(kwargs):
+        for key, val in kwargs.items():
             setattr(self, key, val)
         self.publishing_data = kwargs.get('publishing_data') or {}
 

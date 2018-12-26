@@ -1,5 +1,4 @@
 from demands.pagination import PaginatedResults
-from six import iteritems
 
 from yolapy.services import Yola
 
@@ -8,7 +7,7 @@ class SiteImport(object):
     """Represents a SiteImport resource from the Yola API"""
 
     def __init__(self, **kwargs):
-        for key, val in iteritems(kwargs):
+        for key, val in kwargs.items():
             setattr(self, key, val)
 
     @classmethod

@@ -19,6 +19,7 @@ class User(object):
     ```
     """
 
+    _client = None
     _fields = ('active', 'deleted', 'email', 'id', 'name', 'partner_id',
                'preferences', 'signup_date', 'surname')
 
@@ -42,40 +43,30 @@ class User(object):
         :rtype: yolapy.users.models.User
 
         """
-        self.client = Yola()
 
         for field_name in self._fields:
             setattr(self, field_name, kwargs.get(field_name))
 
-        self.partner_id = self.partner_id or self.client.username
+        self.partner_id = self.partner_id or self.get_client().username
         self.active = self.active or False
         self.preferences = self.preferences or {}
 
     @classmethod
+    def get_client(cls):
+        if not cls._client:
+            cls._client = Yola()
+        return cls._client
+
+    @classmethod
     def get(cls, user_id):
         """Get a user from the Yola API."""
-        user_attributes = Yola().get_user(user_id)
-        user_attributes['signup_date'] = user_attributes.pop('signupDate')
+        user_attributes = cls.get_client().get_user(user_id)
         return cls(**user_attributes)
 
-    def _save_create(self):
-        user = self.client.create_user(
-            email=self.email,
-            name=self.name,
-            partner_id=self.partner_id,
-            preferences=self.preferences,
-            surname=self.surname)
-        self.update(**user)
-
-    def _save_update(self):
-        raise NotImplementedError()
-
-    def save(self):
-        """POST the user data back to the service."""
-        if self.id:
-            self._save_update()
-        else:
-            self._save_create()
+    @classmethod
+    def create(cls, **kwargs):
+        user = cls.get_client().create_user(**kwargs)
+        return cls(**user)
 
     def update(self, **attributes):
         """Update all keyword arguments to update instance attributes."""
