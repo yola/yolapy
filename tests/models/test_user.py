@@ -12,12 +12,13 @@ class UserTestCase(TestCase):
         self.addCleanup(self.client_patcher.stop)
         self.client = self.client_patcher.start().return_value
         self.client.username = 'WL_DEFAULT'
+        User._client = None
 
 
 class TestUserClient(UserTestCase):
 
     def test_is_a_yola_client(self):
-        self.assertEqual(User().client, self.client)
+        self.assertEqual(User().get_client(), self.client)
 
 
 class TestUserGet(UserTestCase):
@@ -30,7 +31,7 @@ class TestUserGet(UserTestCase):
             'surname': 'Lastname',
             'email': 'email@example.com',
             'active': True,
-            'signupDate': '2016-01-01',
+            'signup_date': '2016-01-01',
             'deleted': '2016-02-01',
             'partner_id': 'PARTNER',
             'preferences': {'currency': 'USD'},
@@ -67,8 +68,7 @@ class TestUserSave(UserTestCase):
             'partner_id': 'WL_PARTNER',
             'preferences': {'locale': 'en'},
         }
-        user = User(**user_attrs)
-        user.save()
+        User.create(**user_attrs)
         create_user_call = self.client.create_user.call_args[1]
         self.assertEqual(user_attrs, create_user_call)
 
