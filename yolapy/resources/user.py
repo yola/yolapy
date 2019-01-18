@@ -100,6 +100,9 @@ class UserResourceMixin(object):
                 'locale': locale,
             }).json()['url']
 
+    def get_user_wsites(self, user_id):
+        return self.get(self._user_path(user_id, 'sites')).json()
+
     def _user_path(self, *parts):
         path = '/'.join(['users'] + list(parts))
         return '/%s/' % path
