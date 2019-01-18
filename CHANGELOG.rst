@@ -1,3 +1,7 @@
+0.6.1
+------------------
+* Add `Yola.get_user_wsites` method.
+
 0.6.0
 ------------------
 * Remove `six` dependency

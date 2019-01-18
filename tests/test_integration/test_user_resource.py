@@ -1,7 +1,8 @@
 import demands
+from uuid import uuid4
 
 from tests.test_integration.helpers import (
-    create_site, create_user_with_subscription)
+    create_user, create_site, create_user_with_subscription)
 from tests.test_integration.test_case import YolaServiceTestCase
 
 
@@ -14,6 +15,12 @@ class TestYolaUser(YolaServiceTestCase):
         cls.user = cls._create_user()
         cls.user_id = cls.user['id']
         cls.site = create_site(cls.service, cls.user_id)
+
+    @classmethod
+    def tearDownClass(cls):
+        super(TestYolaUser, cls).tearDownClass()
+        cls.service.delete_site(cls.site['id'])
+        cls.service.delete_user(cls.user_id)
 
     @classmethod
     def _create_user(cls, **custom_attrs):
@@ -59,3 +66,19 @@ class TestYolaUser(YolaServiceTestCase):
         url = self.service.get_sso_open_site_url(
             self.user_id, site_id=self.site['id'])
         self.assertIn(self.site['id'], url)
+
+    def test_get_user_wsites(self):
+        expected_keys = (
+            'id', 'owner_id', 'name', 'template_slug', 'created_at',
+            'deleted_at', 'updated_at'
+        )
+
+        ws_user = create_user(
+            self.service, is_ws=True,
+            site_url='https://{}.yolasite.com'.format(uuid4().hex)
+        )
+        user_wsites = self.service.get_user_wsites(ws_user['id'])
+        self.assertEqual(len(user_wsites), 1)
+        self.assertEqual(user_wsites[0]['owner_id'], ws_user['id'])
+        self.assertItemsEqual(user_wsites[0].keys(), expected_keys)
+        self.service.delete_user(ws_user['id'])
