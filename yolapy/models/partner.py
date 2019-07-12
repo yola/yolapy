@@ -22,7 +22,7 @@ class Partner(object):
 
     @property
     def properties(self):
-        return self._partner.properties
+        return self._partner['properties']
 
     @property
     def available_subscription_types(self):
