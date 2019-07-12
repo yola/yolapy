@@ -1,3 +1,7 @@
+0.6.2
+------------------
+* Add `models.Partner.properties` property.
+
 0.6.1
 ------------------
 * Add `Yola.get_user_wsites` method.

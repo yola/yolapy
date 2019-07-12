@@ -21,6 +21,10 @@ class Partner(object):
         self._partner = self.client.get_partner(partner_id)
 
     @property
+    def properties(self):
+        return self._partner.properties
+
+    @property
     def available_subscription_types(self):
         properties = self._partner['properties']
         return properties['available_subscription_types']
