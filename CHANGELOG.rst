@@ -1,3 +1,9 @@
+0.6.2
+------------------
+* Run tests using maintained python versions : 2.7, 3.5, 3.6, 3.7, 3.8
+* Add `Yola.complete_wl_task(wl_task_id)`
+* Add `Yola.fail_wl_task(wl_task_id, reason)`
+
 0.6.1
 ------------------
 * Add `Yola.get_user_wsites` method.
