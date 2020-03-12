@@ -27,7 +27,7 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
     ],
     install_requires=[
-        'demands >= 4.0.0, < 5.0.0',
+        'demands >= 4.0.0, < 6.0.0',
     ],
     tests_require=[
         'nose >= 1.3.0, < 1.4.0',

@@ -1,3 +1,7 @@
+0.7.0
+------------------
+* Add `Yola.set_site_url` method.
+
 0.6.2
 ------------------
 * Run tests using maintained python versions : 2.7, 3.5, 3.6, 3.7, 3.8

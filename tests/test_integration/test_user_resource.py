@@ -32,8 +32,11 @@ class TestYolaUser(YolaServiceTestCase):
 
     def test_update_user(self):
         user = self._create_user(name='Original Name')
-        user = self.service.update_user(user['id'], name='New Name')
-        self.assertEqual(user['name'], 'New Name')
+        try:
+            user = self.service.update_user(user['id'], name='New Name')
+            self.assertEqual(user['name'], 'New Name')
+        finally:
+            self.service.delete_user(user['id'])
 
     def test_get_user(self):
         user = self.service.get_user(self.user_id)
@@ -77,8 +80,23 @@ class TestYolaUser(YolaServiceTestCase):
             self.service, is_ws=True,
             site_url='https://{}.yolasite.com'.format(uuid4().hex)
         )
-        user_wsites = self.service.get_user_wsites(ws_user['id'])
-        self.assertEqual(len(user_wsites), 1)
-        self.assertEqual(user_wsites[0]['owner_id'], ws_user['id'])
-        self.assertItemsEqual(user_wsites[0].keys(), expected_keys)
-        self.service.delete_user(ws_user['id'])
+        try:
+            user_wsites = self.service.get_user_wsites(ws_user['id'])
+            self.assertEqual(len(user_wsites), 1)
+            self.assertEqual(user_wsites[0]['owner_id'], ws_user['id'])
+            self.assertItemsEqual(user_wsites[0].keys(), expected_keys)
+        finally:
+            self.service.delete_user(ws_user['id'])
+
+    def test_set_site_url(self):
+        user = create_user(
+            self.service,
+            is_ws=True,
+            site_url='https://{}.yolasite.com'.format(uuid4().hex),
+        )
+        try:
+            new_site_url = 'https://{}.site.com'.format(uuid4().hex)
+            user = self.service.set_site_url(user['id'], new_site_url)
+            self.assertEqual(new_site_url, user['preferences']['site_url'])
+        finally:
+            self.service.delete_user(user['id'])

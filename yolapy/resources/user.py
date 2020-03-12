@@ -103,6 +103,16 @@ class UserResourceMixin(object):
     def get_user_wsites(self, user_id):
         return self.get(self._user_path(user_id, 'sites')).json()
 
+    def set_site_url(self, user_id, site_url):
+        """Set new site url for a particular user.
+
+        >>> yola.set_site_url('user_id', 'https://new-domain.com')
+        """
+        return self.post(
+            self._user_path(user_id, 'set-site-url'),
+            json={'site_url': site_url}
+        ).json()
+
     def _user_path(self, *parts):
         path = '/'.join(['users'] + list(parts))
         return '/%s/' % path
