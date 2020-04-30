@@ -1,3 +1,8 @@
+0.8.0
+------------------
+* Remove calculating `Site.is_published` property,
+  because it's already in api.
+
 0.7.0
 ------------------
 * Add `Yola.set_site_url` method.
